@@ -45,7 +45,7 @@ contract CateoTest is Test {
   function test_flujoFeliz() public {
     uint256 c = _colecta(500e6);
     assertEq(usd.balanceOf(satelite), PRECIO, 'el satelite cobra el estudio');
-    (, string memory geo,, bool atestado,,, uint16 ox,,,) = cateo.estudios(0);
+    (, string memory geo,, bool atestado,,, uint16 ox,,,,,) = cateo.estudios(0);
     assertEq(geo, GEO);
     assertTrue(atestado);
     assertEq(ox, 1234);

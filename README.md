@@ -7,9 +7,9 @@ Nació para el track de Avalanche del hackathon Argentina Space 2026 (Salta, 11 
 ## Cómo funciona
 
 1. Alguien dibuja un polígono (hasta 100 km²), declara su número de expediente minero y paga el estudio en USDC: `pedirEstudio`.
-2. El satélite (`satelite/atestar.mjs`) busca la escena Sentinel-2 más despejada, calcula óxidos férricos (B04/B02) y arcillas (B11/B12) y firma `atestar` con la escena, los porcentajes sobre umbral y el hash del informe.
+2. El satélite (`web/satelite/atestar.mjs`) busca la escena Sentinel-2 más despejada, calcula óxidos férricos (B04/B02) y arcillas (B11/B12) y firma `atestar` con la escena, los porcentajes sobre umbral y el hash del informe.
 3. Con el estudio atestado, quien lo pidió abre una colecta (`crearColecta`). Otros aportan (`aportar`). Si se llega a la meta el creador retira; si vence sin llegar, cada aportante se reembolsa.
-4. Cualquiera recomputa el estudio desde la cadena y compara el hash: `satelite/verificar.mjs <id>`.
+4. Cualquiera recomputa el estudio desde la cadena y compara el hash: `web/satelite/verificar.mjs <id>`.
 
 ## Límites del producto
 
@@ -23,7 +23,7 @@ Nació para el track de Avalanche del hackathon Argentina Space 2026 (Salta, 11 
 | Frente | Estado |
 |---|---|
 | Contrato `contracts/src/Cateo.sol` | hecho: 5 tests en verde (`forge test`) |
-| Satélite `satelite/` | hecho: estudio real sobre Salar de Pozuelos en ~6 s, hash reproducible |
+| Satélite `web/satelite/` | hecho: estudio real sobre Salar de Pozuelos en ~6 s, hash reproducible |
 | E2E local `./e2e.sh` | hecho: flujo completo y reembolso en anvil con datos reales |
 | Despliegue en Fuji | [INPUT] fondear la wallet de prueba (dirección en `.env`, `SATELITE`) con AVAX y USDC |
 | Web `web/` | por hacer: brief y dirección con `ultimate-web` |
@@ -43,14 +43,14 @@ Fuji (con `.env` cargado: `set -a; source .env; set +a`):
 ```bash
 cd contracts && forge script script/Deploy.s.sol --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast
 # copiar CATEO=... al .env
-node satelite/atestar.mjs --watch
-node satelite/verificar.mjs 0
+node web/satelite/atestar.mjs --watch
+node web/satelite/verificar.mjs 0
 ```
 
 ## Secciones
 
 - `contracts/`: Foundry. `Cateo.sol` (estudios, atestación, colectas) y `TokenPrueba.sol` (stablecoin simulada).
-- `satelite/`: `estudio.mjs` (el cálculo, determinista), `atestar.mjs`, `verificar.mjs`, `abi.mjs`.
+- `web/satelite/`: `estudio.mjs` (el cálculo, determinista), `atestar.mjs`, `verificar.mjs`, `abi.mjs`.
 - `docs/estudio-de-mercado.md`: qué ve un satélite, datos y precios, financiamiento, competencia, TAM/SAM/SOM.
 - `docs/modelo-de-negocio.md`: clientes, precios, economía unitaria, llegada al mercado, entrevistas.
 - `docs/riesgos-y-legal.md`: propiedad minera, CNV, caso Atómico 3, tabla de riesgos, test de las 4 preguntas.

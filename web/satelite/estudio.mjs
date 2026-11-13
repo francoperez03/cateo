@@ -219,7 +219,7 @@ export async function estudio(geojson, sceneId) {
     hash: keccak256(toHex(json)),
     capas: {
       oxidos: capa(ancho, alto, oxidos, UMBRALES.oxidos, [[255, 214, 102], [176, 32, 32]]),
-      arcillas: capa(ancho, alto, arcillas, UMBRALES.arcillas, [[150, 220, 230], [24, 70, 160]]),
+      arcillas: capa(ancho, alto, arcillas, UMBRALES.arcillas, [[170, 225, 225], [0, 105, 120]]),
     },
     // arriba-izq, arriba-der, abajo-der, abajo-izq: el orden que pide una image source de MapLibre
     esquinas: [aLonLat(x0, y0), aLonLat(x1, y0), aLonLat(x1, y1), aLonLat(x0, y1)],

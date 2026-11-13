@@ -208,7 +208,7 @@ Corrección al research inicial: la nota de iProfesional sobre la "filial aproba
 |---|---|---|
 | Decía tener un yacimiento y el permiso era de un tercero | Expediente declarado y rotulado "sin verificar" | Cruce con catastro y constancia de titularidad firmada, como atestación separada |
 | Prometía respaldo por kilo de litio sin reservas medidas | El esquema no tiene campos de mineral, ley ni valor. Descargo fijo en cada informe | Firma de persona calificada para cualquier afirmación técnica al inversor |
-| Nadie podía verificar nada de forma independiente | Polígono, escena, resultado y hash públicos. `satelite/verificar.mjs` recomputa | Varios firmantes o Chainlink CRE, y código abierto versionado |
+| Nadie podía verificar nada de forma independiente | Polígono, escena, resultado y hash públicos. `web/satelite/verificar.mjs` recomputa | Varios firmantes o Chainlink CRE, y código abierto versionado |
 | Usaba la inscripción PSAV como sello de garantía | Sin logos de reguladores. Solo Fuji, activos simulados | Colocación a cargo de PFC o PSAV registrado, Cateo como proveedor de evidencia |
 | La misma empresa emitía, promocionaba y "certificaba" | El satélite firma el dato. Quien junta plata es otra cuenta | Separación societaria entre quien atesta y quien emite |
 
@@ -243,7 +243,7 @@ Quien puede poner plata en exploración temprana desconfía de lo que le cuenta 
 Tres, en cadena. El pago del estudio emite `EstudioPedido` con el polígono completo. El satélite responde con `EstudioAtestado` (escena Sentinel-2, porcentaje de óxidos, porcentaje de arcillas, hash del informe, versión del algoritmo). Solo con esa atestación el contrato permite `crearColecta`, y los aportes quedan en escrow: se liberan al creador si se llega a la meta y se reembolsan si vence sin llegar.
 
 **3. ¿Qué pasa si el dato miente?**
-Se nota y se puede probar. El polígono, la escena y la versión del algoritmo están en la cadena, así que cualquiera corre `satelite/verificar.mjs`, recalcula y compara contra el hash atestado. Si no coincide, el firmante queda expuesto con una prueba pública. Mientras la colecta está abierta la plata sigue en escrow. Límites que se dicen en voz alta: hoy hay un solo firmante, la titularidad del pedimento va declarada, y si el creador ya retiró no hay recupero. El paso siguiente es quórum de firmantes (o Chainlink CRE) y una ventana de disputa antes del retiro.
+Se nota y se puede probar. El polígono, la escena y la versión del algoritmo están en la cadena, así que cualquiera corre `web/satelite/verificar.mjs`, recalcula y compara contra el hash atestado. Si no coincide, el firmante queda expuesto con una prueba pública. Mientras la colecta está abierta la plata sigue en escrow. Límites que se dicen en voz alta: hoy hay un solo firmante, la titularidad del pedimento va declarada, y si el creador ya retiró no hay recupero. El paso siguiente es quórum de firmantes (o Chainlink CRE) y una ventana de disputa antes del retiro.
 
 **4. ¿Quién paga o cobra, y cuánto?**
 Quien pide el estudio paga un precio fijo en USDC al contrato, que cobra Cateo. **[INPUT]** precio final: la propuesta para el estudio con datos gratuitos es de US$ 300, con mínimo de US$ 100 hasta 10 km² [E], detalle en `modelo-de-negocio.md`. Los aportantes ponen USDC en la colecta y lo cobra el creador si se alcanza la meta. En la demo no hay comisión sobre la colecta. En producción, una comisión sobre lo recaudado solo puede cobrarse a través del socio registrado que coloca.

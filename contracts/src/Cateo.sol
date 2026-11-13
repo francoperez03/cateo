@@ -20,6 +20,8 @@ contract Cateo {
     uint16 pctArcillas;
     bytes32 hashInforme; // keccak256 del informe JSON canonico, recomputable con satelite/verificar.mjs
     string versionAlgoritmo;
+    uint64 bloquePedido; // para ubicar las transacciones sin recorrer logs (el RPC publico limita getLogs)
+    uint64 bloqueAtestado;
   }
 
   struct Colecta {
@@ -62,6 +64,7 @@ contract Cateo {
     e.solicitante = msg.sender;
     e.geojson = geojson;
     e.expediente = expediente;
+    e.bloquePedido = uint64(block.number);
     emit EstudioPedido(id, msg.sender, geojson, expediente);
     require(token.transferFrom(msg.sender, satelite, precioEstudio), 'pago fallido');
   }
@@ -86,6 +89,7 @@ contract Cateo {
     e.pctArcillas = pctArcillas;
     e.hashInforme = hashInforme;
     e.versionAlgoritmo = versionAlgoritmo;
+    e.bloqueAtestado = uint64(block.number);
     emit EstudioAtestado(id, sceneId, fechaEscena, pctOxidos, pctArcillas, hashInforme, versionAlgoritmo);
   }
 

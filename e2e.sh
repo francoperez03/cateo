@@ -30,12 +30,12 @@ for pk in $MINERO_PK $INVERSOR_PK; do
   tx --private-key $pk $TOKEN 'approve(address,uint256)' $CATEO 1000000000000
 done
 
-GEO=$(cat satelite/ejemplos/pozuelos.geojson)
+GEO=$(cat web/satelite/ejemplos/pozuelos.geojson)
 tx --private-key $MINERO_PK $CATEO 'pedirEstudio(string,string)' "$GEO" 'EXP-DEMO-001'
 echo "1. estudio pedido; el satelite cobro $(saldo $SATELITE)"
 
-PRIVATE_KEY=$SATELITE_PK node satelite/atestar.mjs
-node satelite/verificar.mjs 0
+PRIVATE_KEY=$SATELITE_PK node web/satelite/atestar.mjs
+node web/satelite/verificar.mjs 0
 
 VENCE=$(($(cast block --rpc-url $RPC_URL -f timestamp) + 3600))
 tx --private-key $MINERO_PK $CATEO 'crearColecta(uint256,uint256,uint64)' 0 500000000 $VENCE

@@ -50,6 +50,7 @@ node web/satelite/verificar.mjs 0
 ## Secciones
 
 - `PRODUCT.md` y `DESIGN.md`: para quién es la web y su sistema visual.
+- `web/app/mercado/`: página pública con las cifras del estudio de mercado (año, fuente y nivel de confianza por cifra).
 - `web/`: Next.js. Pantallas en `app/`, lectura de cadena en `lib/`, y las rutas `api/atestar` (el satélite como función) y `api/estudio` (recomputar).
 - `assets/`: logo (isotipo en SVG y PNG, versión horizontal, versión sobre fondo oscuro) y portada de 1200×630.
 - `contracts/`: Foundry. `Cateo.sol` (estudios, atestación, colectas) y `TokenPrueba.sol` (stablecoin simulada).

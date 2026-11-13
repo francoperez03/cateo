@@ -27,6 +27,7 @@ export default function Cabecera() {
         <Link href="/#estudios">Estudios</Link>
         <Link href="/#colectas">Colectas</Link>
         <Link href="/estudio/nuevo">Pedir estudio</Link>
+        <Link href="/mercado">Mercado</Link>
       </nav>
       <div className="wallet">
         {!listo ? null : isConnected && chainId !== cadena.id ? (

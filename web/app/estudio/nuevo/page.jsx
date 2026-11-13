@@ -7,6 +7,7 @@ import { useAccount, useReadContract } from 'wagmi'
 import Recorrido from '@/componentes/Recorrido'
 import { abi, abiToken, AREA_MAX_KM2, cadena, CATEO, ACUNABLE, MONEDA, TOKEN } from '@/lib/cadena'
 import { aGeojson, areaKm2, leerPoligono, mensajeError, usd } from '@/lib/formato'
+import { useTitulo } from '@/lib/lecturas'
 import { asegurarPermiso, enviar } from '@/lib/tx'
 
 const Mapa = dynamic(() => import('@/componentes/Mapa'), { ssr: false, loading: () => <div className="mapa cargando">Cargando el mapa…</div> })
@@ -21,6 +22,7 @@ export default function PedirEstudio() {
   const [pegado, setPegado] = useState('')
   const [paso, setPaso] = useState('') // '', 'permiso', 'pago'
   const [error, setError] = useState('')
+  useTitulo('Pedir un estudio · Cateo')
 
   const lectura = { chainId: cadena.id, query: { enabled: !!CATEO } }
   const precio = useReadContract({ address: CATEO, abi, functionName: 'precioEstudio', ...lectura }).data
@@ -61,8 +63,8 @@ export default function PedirEstudio() {
     try {
       setPuntos(leerPoligono(pegado).slice(0, -1))
       setError('')
-    } catch (e) {
-      setError(e.message)
+    } catch {
+      setError('No se pudo leer el GeoJSON. Pegá un Polygon con coordenadas [longitud, latitud].')
     }
   }
 
@@ -117,7 +119,7 @@ export default function PedirEstudio() {
           <p className="nota">Conectá una wallet para pagar.</p>
         ) : sinSaldo ? (
           <p className="nota" role="status">
-            Saldo: {usd(saldo.data)} {MONEDA}.{' '}
+            Tu saldo es {usd(saldo.data)} {MONEDA}, no alcanza.{' '}
             {ACUNABLE ? (
               <button className="enlace" onClick={acunar}>Acuñar 1.000 tUSD de prueba</button>
             ) : (
@@ -127,7 +129,7 @@ export default function PedirEstudio() {
         ) : null}
 
         <button className="boton ancho" disabled={!puede} onClick={pagar}>
-          {paso === 'permiso' ? 'Autorizando el pago…' : paso === 'pago' ? 'Enviando el pedido…' : `Pagar ${precio !== undefined ? usd(precio) : ''} ${MONEDA} y pedir`}
+          {paso === 'permiso' ? 'Autorizando el pago…' : paso === 'pago' ? 'Enviando el pedido…' : precio !== undefined ? `Pagar ${usd(precio)} ${MONEDA} y pedir` : 'Pedir el estudio'}
         </button>
         {error ? <p className="nota-error" role="alert">{error}</p> : null}
         <p className="nota">Se atesta en menos de un minuto.</p>

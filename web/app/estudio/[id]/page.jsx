@@ -9,7 +9,7 @@ import Limite from '@/componentes/Limite'
 import Recorrido from '@/componentes/Recorrido'
 import { abi, cadena, CATEO, enlaceDireccion, enlaceTx, MONEDA } from '@/lib/cadena'
 import { corta, fecha, mensajeError, pct, usd } from '@/lib/formato'
-import { estadoColecta, useColectas, useEstudio } from '@/lib/lecturas'
+import { estadoColecta, useColectas, useEstudio, useTitulo } from '@/lib/lecturas'
 import { enviar } from '@/lib/tx'
 
 const Mapa = dynamic(() => import('@/componentes/Mapa'), { ssr: false, loading: () => <div className="mapa cargando">Cargando el mapa…</div> })
@@ -31,6 +31,7 @@ export default function Estudio({ params }) {
   const [capa, setCapa] = useState('oxidos')
   const [errorSatelite, setErrorSatelite] = useState('')
   const pedido = useRef(false)
+  useTitulo(`Estudio N.º ${id} · Cateo`)
 
   useEffect(() => {
     if (e) setEsperando(!e.atestado)
@@ -45,7 +46,7 @@ export default function Estudio({ params }) {
       if (j.error) setErrorSatelite(j.error)
       refetch()
     } catch {
-      setErrorSatelite('No se pudo contactar al satélite.')
+      setErrorSatelite('No se pudo contactar al servicio de atestación.')
     }
   }, [id, refetch])
   useEffect(() => {
@@ -108,12 +109,12 @@ export default function Estudio({ params }) {
       </div>
 
       <section className="ficha">
-        <Recorrido paso={!e.atestado ? 1 : suyas.length ? 3 : 2} />
+        <Recorrido paso={e.atestado ? 2 : 1} />
         <h1>Estudio N.º {id}</h1>
 
         {!e.atestado ? (
           <div className="estado-espera" role="status">
-            <h2>El satélite está procesando</h2>
+            <h2>Cateo está procesando la escena</h2>
             <p>Busca la escena más despejada, calcula y firma. Menos de un minuto.</p>
             {errorSatelite ? (
               <>
@@ -121,7 +122,7 @@ export default function Estudio({ params }) {
                 <button className="boton fantasma" onClick={llamarSatelite}>Reintentar</button>
               </>
             ) : (
-              <progress aria-label="Procesando" />
+              <Espera />
             )}
           </div>
         ) : (
@@ -141,7 +142,7 @@ export default function Estudio({ params }) {
             <Limite />
 
             <div className={`verificacion ${recomputo.estado === 'listo' ? (recomputo.coincide ? 'bien' : 'mal') : ''}`} role="status" aria-live="polite">
-              <h2>Verificación</h2>
+              <h2>Atestación y verificación</h2>
               {recomputo.estado === 'corriendo' ? (
                 <p>Recomputando desde la cadena…</p>
               ) : recomputo.estado === 'listo' ? (
@@ -159,18 +160,24 @@ export default function Estudio({ params }) {
               </button>
             </div>
 
+            {suyas.length ? (
+              <Link className="boton fantasma" href={`/colecta/${suyas[0].id}`}>Ver la colecta N.º {suyas[0].id}</Link>
+            ) : esDueno ? (
+              <a className="boton fantasma" href="#abrir-colecta">Abrir una colecta</a>
+            ) : null}
+
             <h2>Procedencia</h2>
             <dl className="procedencia">
               {inf ? <Dato t="Satélite" v={`${inf.plataforma.replace('sentinel-', 'Sentinel-').toUpperCase().replace('SENTINEL', 'Sentinel')} (ESA, Copernicus)`} /> : null}
-              <Dato t="Escena" v={e.sceneId} mono />
-              <Dato t="Fecha" v={fecha(e.fechaEscena)} />
-              {inf ? <Dato t="Área" v={`${inf.areaKm2.toLocaleString('es-AR')} km²`} /> : null}
+              <Dato t="Escena" v={e.sceneId} href={`https://earth-search.aws.element84.com/v1/collections/sentinel-2-c1-l2a/items/${e.sceneId}`} mono />
+              <Dato t="Fecha de la escena" v={fecha(e.fechaEscena)} />
+              {inf ? <Dato t="Área" v={`${inf.areaKm2.toLocaleString('es-AR', { maximumFractionDigits: 1 })} km²`} /> : null}
               {inf ? <Dato t="Píxeles válidos" v={`${inf.pixelesValidos.toLocaleString('es-AR')} de ${inf.pixelesEnPoligono.toLocaleString('es-AR')}`} /> : null}
               <Dato t="Algoritmo" v={e.versionAlgoritmo} mono />
               <Dato t="Firmante" v={satelite ? corta(satelite) : '…'} href={enlaceDireccion(satelite)} mono />
-              <Dato t="Hash del informe" v={corta(e.hashInforme)} titulo={e.hashInforme} mono />
-              <Dato t="Tx del pedido" v={recomputo.txPedido ? corta(recomputo.txPedido) : `bloque ${e.bloquePedido}`} href={enlaceTx(recomputo.txPedido)} mono />
-              <Dato t="Tx de la atestación" v={recomputo.txAtestacion ? corta(recomputo.txAtestacion) : `bloque ${e.bloqueAtestado}`} href={enlaceTx(recomputo.txAtestacion)} mono />
+              <Dato t="Hash del informe" v={e.hashInforme} mono />
+              <Dato t="Transacción del pedido" v={recomputo.txPedido ? corta(recomputo.txPedido) : `bloque ${e.bloquePedido}`} href={enlaceTx(recomputo.txPedido)} mono />
+              <Dato t="Transacción de la atestación" v={recomputo.txAtestacion ? corta(recomputo.txAtestacion) : `bloque ${e.bloqueAtestado}`} href={enlaceTx(recomputo.txAtestacion)} mono />
               <Dato t="Solicitante" v={corta(e.solicitante)} href={enlaceDireccion(e.solicitante)} mono />
             </dl>
             <p className="declarado-bloque">
@@ -199,6 +206,15 @@ export default function Estudio({ params }) {
       </section>
     </div>
   )
+}
+
+function Espera() {
+  const [s, setS] = useState(0)
+  useEffect(() => {
+    const t = setInterval(() => setS((v) => v + 1), 1000)
+    return () => clearInterval(t)
+  }, [])
+  return <p className="dato">{s < 4 ? 'Buscando la escena' : s < 9 ? 'Calculando índices' : 'Firmando la atestación'} · {s} s</p>
 }
 
 function Dato({ t, v, href, mono, titulo }) {
@@ -236,7 +252,7 @@ function CrearColecta({ estudioId }) {
   }
 
   return (
-    <form className="formulario" onSubmit={crear}>
+    <form className="formulario" id="abrir-colecta" onSubmit={crear}>
       <h3>Abrir una colecta</h3>
       <div className="par">
         <label className="campo">

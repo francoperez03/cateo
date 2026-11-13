@@ -12,7 +12,7 @@ export default function Cabecera() {
   const { switchChain } = useSwitchChain()
   const [listo, setListo] = useState(false)
   useEffect(() => setListo(true), [])
-  const sinWallet = listo && connectors.length === 0
+  const sinWallet = listo && typeof window !== 'undefined' && !window.ethereum
 
   return (
     <header className="cabecera">
@@ -32,15 +32,15 @@ export default function Cabecera() {
         {!listo ? null : isConnected && chainId !== cadena.id ? (
           <button className="boton aviso" onClick={() => switchChain({ chainId: cadena.id })}>Cambiar a {cadena.name}</button>
         ) : isConnected ? (
-          <button className="boton fantasma dato" onClick={() => disconnect()} title="Desconectar">{corta(address)}</button>
+          <button className="boton fantasma dato" onClick={() => disconnect()} aria-label={`Desconectar ${corta(address)}`}>{corta(address)} · Salir</button>
         ) : sinWallet ? (
           <a className="boton fantasma" href="https://core.app" target="_blank" rel="noreferrer">Instalar Core Wallet</a>
         ) : (
-          <button className="boton" disabled={isPending} onClick={() => connect({ connector: connectors[0], chainId: cadena.id })}>
+          <button className="boton fantasma" disabled={isPending} onClick={() => connect({ connector: connectors[0], chainId: cadena.id })}>
             {isPending ? 'Conectando…' : 'Conectar wallet'}
           </button>
         )}
-        {error && !isConnected ? <span className="nota-error" role="alert">No se pudo conectar la wallet.</span> : null}
+        {error && !isConnected ? <span className="nota-error" role="alert">No se pudo conectar. Abrí la wallet y aceptá.</span> : null}
       </div>
     </header>
   )

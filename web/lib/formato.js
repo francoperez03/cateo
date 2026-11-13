@@ -31,5 +31,5 @@ export const mensajeError = (e) => {
   if (/User rejected|denied/i.test(m)) return 'Rechazaste la transacción en la wallet.'
   if (/insufficient funds/i.test(m)) return 'No alcanza el AVAX para pagar el gas.'
   const r = m.match(/reverted with the following reason:\s*(.+)/)
-  return r ? `El contrato rechazó la operación: ${r[1]}` : m
+  return r ? `El contrato rechazó la operación: ${r[1]}` : 'No se pudo completar la operación. Reintentá.'
 }

@@ -1,6 +1,9 @@
 'use client'
+import { useEffect } from 'react'
 import { useReadContract, useReadContracts } from 'wagmi'
 import { abi, cadena, CATEO } from './cadena'
+
+export const useTitulo = (t) => useEffect(() => { document.title = t }, [t])
 
 const base = { address: CATEO, abi, chainId: cadena.id }
 const E = ['solicitante', 'geojson', 'expediente', 'atestado', 'sceneId', 'fechaEscena', 'pctOxidos', 'pctArcillas', 'hashInforme', 'versionAlgoritmo', 'bloquePedido', 'bloqueAtestado']
@@ -37,7 +40,7 @@ export function useColecta(id) {
 }
 
 export function estadoColecta(c, ahora = Date.now() / 1000) {
-  if (c.retirada) return { clave: 'retirada', texto: 'Retirada' }
+  if (c.retirada) return { clave: 'retirada', texto: 'Retirada por quien la abrió' }
   if (c.recaudado >= c.meta) return { clave: 'alcanzada', texto: 'Meta alcanzada' }
   if (ahora >= Number(c.vence)) return { clave: 'vencida', texto: 'Vencida' }
   return { clave: 'abierta', texto: 'Abierta' }

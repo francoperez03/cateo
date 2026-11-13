@@ -7,7 +7,7 @@ import Limite from '@/componentes/Limite'
 import Recorrido from '@/componentes/Recorrido'
 import { abi, abiToken, cadena, CATEO, enlaceDireccion, ACUNABLE, MONEDA, TOKEN } from '@/lib/cadena'
 import { corta, fecha, mensajeError, pct, usd } from '@/lib/formato'
-import { estadoColecta, useColecta, useEstudio } from '@/lib/lecturas'
+import { estadoColecta, useColecta, useEstudio, useTitulo } from '@/lib/lecturas'
 import { asegurarPermiso, enviar } from '@/lib/tx'
 
 export default function Colecta({ params }) {
@@ -19,6 +19,7 @@ export default function Colecta({ params }) {
   const lectura = { chainId: cadena.id, query: { enabled: !!address && !!CATEO, refetchInterval: 6000 } }
   const aporte = useReadContract({ address: CATEO, abi, functionName: 'aportes', args: [BigInt(valido ? id : 0), address], ...lectura })
   const saldo = useReadContract({ address: TOKEN, abi: abiToken, functionName: 'balanceOf', args: [address], ...lectura })
+  useTitulo(`Colecta N.º ${id} · Cateo`)
   const [monto, setMonto] = useState('100')
   const [accion, setAccion] = useState('')
   const [error, setError] = useState('')
@@ -59,7 +60,10 @@ export default function Colecta({ params }) {
     <div className="pagina angosta">
       <Recorrido paso={3} />
       <h1>Colecta N.º {id}</h1>
-      <p className={`sello ${estado.clave}`}>{estado.texto}</p>
+      <p className="sellos">
+        <span className={`sello ${estado.clave}`}>{estado.texto}</span>
+        <span className="sello">Red de prueba, activos simulados</span>
+      </p>
 
       <div className="avance">
         <p className="cifra">
@@ -68,12 +72,16 @@ export default function Colecta({ params }) {
         <progress max={Number(c.meta)} value={Number(c.recaudado)} aria-label="Recaudado sobre la meta" />
         <dl className="medidas">
           <div>
-            <dt>{estado.clave === 'abierta' ? 'Vence el' : 'Venció el'}</dt>
+            <dt>{Date.now() / 1000 < Number(c.vence) ? 'Vence el' : 'Venció el'}</dt>
             <dd>{fecha(c.vence)}</dd>
           </div>
           <div>
             <dt>Abrió la colecta</dt>
             <dd className="dato">{enlaceDireccion(c.creador) ? <a href={enlaceDireccion(c.creador)} target="_blank" rel="noreferrer">{corta(c.creador)}</a> : corta(c.creador)}</dd>
+          </div>
+          <div>
+            <dt>Contrato en custodia</dt>
+            <dd className="dato">{enlaceDireccion(CATEO) ? <a href={enlaceDireccion(CATEO)} target="_blank" rel="noreferrer">{corta(CATEO)}</a> : corta(CATEO)}</dd>
           </div>
           {isConnected ? (
             <div>
@@ -86,7 +94,7 @@ export default function Colecta({ params }) {
 
       <section className="acciones-colecta">
         {!isConnected ? (
-          <p className="nota">Conectá una wallet para aportar.</p>
+          estado.clave === 'abierta' || estado.clave === 'vencida' ? <p className="nota">Conectá una wallet para {estado.clave === 'abierta' ? 'aportar' : 'pedir el reembolso'}.</p> : null
         ) : estado.clave === 'abierta' || (estado.clave === 'alcanzada' && Date.now() / 1000 < Number(c.vence)) ? (
           <form className="formulario" onSubmit={(ev) => { ev.preventDefault(); correr('aportar', async () => { await asegurarPermiso(valor); await llamada('aportar', [BigInt(id), valor]) }, 'Aporte registrado.') }}>
             <h2>Aportar</h2>
@@ -96,7 +104,7 @@ export default function Colecta({ params }) {
             </label>
             {sinSaldo ? (
               <p className="nota">
-                Saldo: {usd(saldo.data)} {MONEDA}.{' '}
+                Tu saldo es {usd(saldo.data)} {MONEDA}, no alcanza.{' '}
                 {ACUNABLE ? (
                   <button type="button" className="enlace" onClick={() => correr('acunar', () => enviar({ address: TOKEN, abi: abiToken, functionName: 'mint', args: [address, 1000_000000n] }), 'Se acuñaron 1.000 tUSD de prueba.')}>Acuñar 1.000 tUSD de prueba</button>
                 ) : (
@@ -139,9 +147,9 @@ export default function Colecta({ params }) {
         {e ? (
           <Link className="tarjeta-estudio" href={`/estudio/${Number(c.estudioId)}`}>
             <span className="dato id">Estudio N.º {Number(c.estudioId)}</span>
-            <span className="indice ox">Óxidos férricos {pct(e.pctOxidos)}</span>
-            <span className="indice ar">Arcillas {pct(e.pctArcillas)}</span>
-            <span className="secundario">{fecha(e.fechaEscena)} · ver mapa y recomputar</span>
+            <span className="indice ox">Óxidos: {pct(e.pctOxidos)} del área sobre el umbral</span>
+            <span className="indice ar">Arcillas: {pct(e.pctArcillas)} del área sobre el umbral</span>
+            <span className="secundario">Ver el mapa y recomputar</span>
           </Link>
         ) : (
           <p className="vacio">Leyendo el estudio…</p>

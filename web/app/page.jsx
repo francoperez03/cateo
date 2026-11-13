@@ -2,11 +2,12 @@
 import Link from 'next/link'
 import { CATEO, enlaceDireccion, MONEDA } from '@/lib/cadena'
 import { corta, fecha, pct, usd } from '@/lib/formato'
-import { estadoColecta, useColectas, useEstudios } from '@/lib/lecturas'
+import { estadoColecta, useColectas, useEstudios, useTitulo } from '@/lib/lecturas'
 
 export default function Inicio() {
   const estudios = useEstudios()
   const colectas = useColectas()
+  useTitulo('Cateo · estudios satelitales atestados en Avalanche')
 
   return (
     <div className="pagina">
@@ -31,7 +32,7 @@ export default function Inicio() {
           </div>
           <div>
             <dt>No afirma</dt>
-            <dd>Ley, tonelaje, valor, litio ni titularidad del permiso.</dd>
+            <dd>No estima ley, tonelaje ni valor. No detecta litio. No verifica la titularidad del permiso.</dd>
           </div>
         </dl>
       </section>
@@ -54,7 +55,7 @@ export default function Inicio() {
         ) : estudios.cargando ? (
           <p className="vacio">Leyendo la cadena…</p>
         ) : estudios.lista.length === 0 ? (
-          <p className="vacio">Todavía no hay estudios. <Link href="/estudio/nuevo">Pedí el primero</Link>.</p>
+          <p className="vacio">{CATEO ? <>Todavía no hay estudios. <Link href="/estudio/nuevo">Pedí el primero</Link>.</> : 'Sin contrato desplegado no hay estudios para mostrar.'}</p>
         ) : (
           <ul className="filas">
             {estudios.lista.map((e) => (
@@ -64,15 +65,15 @@ export default function Inicio() {
                   <span className="principal">
                     {e.atestado ? (
                       <>
-                        <span className="indice ox">Óxidos {pct(e.pctOxidos)}</span>
-                        <span className="indice ar">Arcillas {pct(e.pctArcillas)}</span>
+                        <span className="indice ox">Óxidos: {pct(e.pctOxidos)} del área</span>
+                        <span className="indice ar">Arcillas: {pct(e.pctArcillas)} del área</span>
                       </>
                     ) : (
-                      <span className="pendiente">Esperando al satélite</span>
+                      <span className="pendiente">Esperando la atestación</span>
                     )}
                   </span>
-                  <span className="secundario">{e.atestado ? fecha(e.fechaEscena) : 'Sin atestar'}</span>
-                  <span className="secundario declarado" title="Dato declarado por quien pidió el estudio, sin verificar">Exp. {e.expediente || 'sin declarar'}</span>
+                  <span className="secundario">{e.atestado ? `Escena del ${fecha(e.fechaEscena)}` : 'Sin atestar'}</span>
+                  <span className="secundario declarado" >Exp. declarado: {e.expediente || 'sin declarar'}</span>
                 </Link>
               </li>
             ))}

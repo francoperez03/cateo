@@ -34,11 +34,12 @@ export default function Mapa({ puntos = [], onPunto, capas, visible = 'oxidos', 
   alClic.current = onPunto
 
   useEffect(() => {
-    const m = new maplibregl.Map({ container: caja.current, style: ESTILO, center: [-66.88, -24.715], zoom: 9.5, attributionControl: { compact: true } })
+    const m = new maplibregl.Map({ container: caja.current, style: ESTILO, center: [-66.88, -24.715], zoom: 10.5, attributionControl: { compact: true }, locale: { 'NavigationControl.ZoomIn': 'Acercar', 'NavigationControl.ZoomOut': 'Alejar', 'AttributionControl.ToggleAttribution': 'Mostrar la atribución', 'Map.Title': 'Mapa' } })
     m.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right')
     m.on('load', () => {
       m.addSource('area', { type: 'geojson', data: figura([]) })
       m.addLayer({ id: 'area-relleno', type: 'fill', source: 'area', filter: ['==', '$type', 'Polygon'], paint: { 'fill-color': TINTA, 'fill-opacity': 0.08 } })
+      m.addLayer({ id: 'area-borde-base', type: 'line', source: 'area', filter: ['!=', '$type', 'Point'], paint: { 'line-color': '#10202e', 'line-width': 4.5 } })
       m.addLayer({ id: 'area-borde', type: 'line', source: 'area', filter: ['!=', '$type', 'Point'], paint: { 'line-color': TINTA, 'line-width': 2 } })
       m.addLayer({ id: 'area-vertices', type: 'circle', source: 'area', filter: ['==', '$type', 'Point'], paint: { 'circle-radius': 4, 'circle-color': TINTA, 'circle-stroke-color': '#10202e', 'circle-stroke-width': 1.5 } })
       m.fire('cateo-listo')

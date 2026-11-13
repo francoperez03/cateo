@@ -25,8 +25,8 @@ Nació para el track de Avalanche del hackathon Argentina Space 2026 (Salta, 11 
 | Contrato `contracts/src/Cateo.sol` | hecho: 5 tests en verde (`forge test`) |
 | Satélite `web/satelite/` | hecho: estudio real sobre Salar de Pozuelos en ~6 s, hash reproducible |
 | E2E local `./e2e.sh` | hecho: flujo completo y reembolso en anvil con datos reales |
-| Despliegue en Fuji | [INPUT] fondear la wallet de prueba (dirección en `.env`, `SATELITE`) con AVAX y USDC; después desplegar y cargar `NEXT_PUBLIC_CATEO`, `NEXT_PUBLIC_TOKEN` y `PRIVATE_KEY` en Vercel |
-| Web `web/` | hecho y publicado: https://cateo-gold.vercel.app (proyecto `cateo` en Vercel). Flujo completo probado en navegador contra anvil. Falta la revisión con subagente y el pulido |
+| Despliegue en Fuji | hecho el 2026-11-13 con `./desplegar-fuji.sh`. Contrato `0x146ccb469FDA4B84bb36f0fD12FA35443ea7B7AF` (https://testnet.snowtrace.io/address/0x146ccb469FDA4B84bb36f0fD12FA35443ea7B7AF), stablecoin de prueba acuñable `0x07BCB59BfA38c900AeC2593629Db1DAd90258a7f`. Estudio N.º 0 atestado (hash recomputado coincide) y colecta N.º 0 abierta |
+| Web `web/` | hecho y publicado: https://cateo-gold.vercel.app (proyecto `cateo` en Vercel). Apunta al contrato de Fuji. Flujo completo probado en navegador contra anvil; en Fuji, lectura y recómputo verificados. Quedan los hallazgos de detalle de la revisión de diseño |
 | Estudio de mercado `docs/` | escrito y auditado contra fuentes (25 cifras); queda lo marcado `[INPUT]` |
 | Video y deck | guion y deck escritos en `docs/pitch/`; faltan los links de Fuji |
 

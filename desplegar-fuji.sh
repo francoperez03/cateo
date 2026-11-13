@@ -27,9 +27,10 @@ tx $CATEO 'aportar(uint256,uint256)' 0 180000000
 echo "Estudio 0 atestado y colecta 0 abierta con 180 de 500 tUSD."
 
 cd web
-poner() { vercel env rm "$1" production --yes --scope francoperez03s-projects >/dev/null 2>&1 || true; printf '%s' "$2" | vercel env add "$1" production --scope francoperez03s-projects >/dev/null 2>&1; }
+# --type config: son direcciones públicas, no secretos (Vercel pregunta por el nombre NEXT_PUBLIC_TOKEN)
+poner() { printf '%s' "$2" | vercel env add "$1" production --force ${3:-} --scope francoperez03s-projects >/dev/null 2>&1 || echo "No se pudo cargar $1 en Vercel"; }
 poner NEXT_PUBLIC_CATEO "$CATEO"
-poner NEXT_PUBLIC_TOKEN "$TOKEN"
+poner NEXT_PUBLIC_TOKEN "$TOKEN" "--type config"
 poner NEXT_PUBLIC_MONEDA tUSD
 poner PRIVATE_KEY "$PRIVATE_KEY"
 vercel deploy --prod --yes --scope francoperez03s-projects 2>&1 | grep -E '"status"' || true

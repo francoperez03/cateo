@@ -46,11 +46,11 @@ Notas del orador: la cuarta respuesta va hablada y se retoma en el slide 6: el t
 
 **Cuatro transacciones en Fuji.**
 
-- Pedido de estudio: [INPUT link del explorer]
-- Atestación: [INPUT link del explorer]
-- Colecta creada y aporte en USDC de prueba: [INPUT links del explorer]
+- Pedido de estudio: https://testnet.snowtrace.io/tx/0x5466ffe391812832146b32bd596b96d4f8910c0fa000d080e45bc44a24ac912e
+- Atestación: https://testnet.snowtrace.io/tx/0x95b70822332d82844acada0f33daad8c1276285908c3c78031eacebba6c9f0f4
+- Colecta creada y aporte en stablecoin de prueba (tUSD): transacciones del contrato en https://testnet.snowtrace.io/address/0x146ccb469FDA4B84bb36f0fD12FA35443ea7B7AF
 
-Notas del orador: correr en vivo sobre un polígono de la Puna ([INPUT] cuál) y terminar con `verificar`: el hash recomputado coincide con el on-chain. Tener las transacciones de respaldo ya confirmadas. Contrato: [INPUT dirección en Fuji].
+Notas del orador: correr en vivo sobre un polígono de la Puna (borde oeste del Salar de Pozuelos, Salta, 62,8 km²) y terminar con `verificar`: el hash recomputado coincide con el on-chain. Tener las transacciones de respaldo ya confirmadas. Contrato: `0x146ccb469FDA4B84bb36f0fD12FA35443ea7B7AF` (https://testnet.snowtrace.io/address/0x146ccb469FDA4B84bb36f0fD12FA35443ea7B7AF).
 
 ## Slide 6 · Modelo de negocio
 
@@ -70,4 +70,4 @@ Notas del orador: los precios son propuesta inicial, a validar con 5 entrevistas
 - Co-firma de un geólogo matriculado y socio PFC o PSAV (RG 1125, sandbox hasta el 31/12/2027).
 - Fuentes: Copernicus Sentinel-2 vía Earth Search, CNV, Código de Minería (Ley 24.498), Avalanche docs.
 
-Notas del orador: cerrar con el pedido concreto: contactos en la Secretaría de Minería de Salta, en REMSA y en una plataforma de financiamiento colectivo registrada. Equipo: [INPUT]. Links: repo [INPUT], demo [INPUT].
+Notas del orador: cerrar con el pedido concreto: contactos en la Secretaría de Minería de Salta, en REMSA y en una plataforma de financiamiento colectivo registrada. Equipo: [INPUT]. Links: repo https://github.com/francoperez03/cateo, demo https://cateo-gold.vercel.app.

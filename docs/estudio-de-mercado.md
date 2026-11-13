@@ -64,13 +64,13 @@ Licencia: los datos Copernicus admiten uso comercial con la atribución "Contain
 
 ## Tasking comercial y precio por km²
 
-Referencia de escala: una unidad de cateo son 500 ha (5 km²) y un cateo admite hasta 20 unidades, es decir 100 km² ([V], Código de Minería según Ley 24.287: https://www.argentina.gob.ar/normativa/nacional/norma-24287/texto).
+Referencia de escala: una unidad de cateo son 500 ha (5 km²) y un cateo admite hasta 20 unidades, es decir 100 km² ([V], Código de Minería según Ley 24.498 de 1995; el 24287 de la URL es el identificador de InfoLEG: https://www.argentina.gob.ar/normativa/nacional/norma-24287/texto).
 
 | Proveedor | Producto | USD por km² | Pedido mínimo | Costo de un cateo de 100 km² [E] | Fuente y fecha | Estado |
 |---|---|---|---|---|---|---|
 | Sentinel-2, ASTER, EMIT | Archivo abierto | 0 | No tiene | USD 0 | Ver tabla anterior | [V] |
 | Wyvern Dragonette | Hiperespectral 5 m | 1 archivo, 7,50 tasking | 1 km² (SkyWatch), 100 km² (UP42) | USD 100 a 750 | https://skywatch.com/geospatial-data-providers/wyvern/ (jun. 2026) | [F1] |
-| Satellogic (origen argentino) | Multiespectral | 4 archivo, 8 tasking, 12 prioritario, 18 urgente | 25 km² (50 vía UP42) | USD 400 a 1.800 | https://satellogic.com/?p=5304 | [F1] |
+| Satellogic (origen argentino) | Multiespectral | 4 archivo, 8 tasking, 12 prioritario, 18 urgente | 25 km² (50 vía UP42) | USD 400 a 1.800 | https://satellogic.com/?p=5304 (ene. 2023; la página solo confirma USD 8 por km² en tasking sobre una imagen de 50 km²; archivo, prioritario, urgente y mínimo de 25 km²: [INPUT] fuente) | [F1] |
 | Planet Tanager | Hiperespectral | 6 a 9 indicativo | Sin publicar | USD 600 a 900 | https://skywatch.com/geospatial-data-providers/planet/ (jun. 2026) | [F1] |
 | Pixxel Firefly | VNIR hiperespectral | 8 tasking | 100 km² vía UP42 | USD 800 | https://docs.pixxel.space/documentation/pricingandrefunds/tasking | [F1] |
 | SkyFi | VHR y SHR nuevas | 12 y 30 | 25 km² | USD 1.200 a 3.000 | https://skyfi.com/files/SkyFi_Pricing_2025.pdf (2025, PDF poco legible) | [F1] |
@@ -85,12 +85,12 @@ Lectura: el nivel base del producto tiene costo de dato cero. Un nivel premium c
 ### Global
 
 - Presupuesto global de exploración no ferrosa: **USD 12.400 M en 2025**, 0,6% menos que los USD 12.500 M de 2024 y tercera baja anual seguida. Oro unos USD 6.150 M, cobre unos USD 3.300 M, litio unos USD 595 M ([V], S&P Global: https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/03/world-exploration-trends-2026-what-the-latest-data-says-about-budgets-risk-appetite-and-the-project-pipeline).
-- Exploración grassroots: 22% del total (USD 2.790 M) en 2024, mínimo histórico ([F1], https://www.mining.com/budget-allocated-to-grassroots-exploration-at-all-time-low-sp/). En 2025 bajó a 21%, con la exploración en mina en récord de 45% ([F1], resumen de búsqueda del informe S&P de marzo de 2026).
+- Exploración grassroots: 22% del total (USD 2.790 M) en 2024, mínimo histórico ([F1], https://www.mining.com/budget-allocated-to-grassroots-exploration-at-all-time-low-sp/). En 2025 bajó a 21%, nuevo mínimo ([F1], https://www.cruxinvestor.com/posts/shrinking-discovery-budgets-raise-the-value-of-funded-explorers, 2026-10-20). Exploración en mina en récord de 45% en 2025: [INPUT] fuente, no se pudo abrir el informe S&P.
 - América Latina conservó la mayor participación regional en 2025 ([V], mismo informe S&P). **El porcentaje exacto no está publicado fuera del informe pago: [INPUT]**.
 - Presupuesto de las junior: bajó 13% a USD 4.390 M en 2025. Aun así junior e intermedias levantaron USD 21.430 M en 2025, más del doble que en 2024 ([F1], https://www.cruxinvestor.com/posts/shrinking-discovery-budgets-raise-the-value-of-funded-explorers).
-- TSX más TSXV: unos CAD 33.000 M levantados en 2025 (+60%), con las exploradoras tempranas recibiendo el 12% ([F1], misma fuente).
+- TSX más TSXV: unos CAD 33.000 M levantados en 2025 (+60%), con las exploradoras tempranas recibiendo cerca del 12%, contra 31% en 2020 ([F1], Fastmarkets, 2026-04-30: https://www.fastmarkets.com/insights/critical-minerals-boom-boosts-growth-stage-juniors-hotter-commodities/; la nota dice "$33 billion" sin aclarar moneda y TMX informa CAD 33.300 M).
 - ASX: las exploradoras levantaron AUD 5.630 M solo en el cuarto trimestre de 2025 ([F1], https://www.bdo.com.au/en-au/news/media-releases/asx-explorers-hit-record-$12bn-reserves-as-sector-roars-back).
-- Kitco, 2026-11-06: "funding, not geology, is the bottleneck for most juniors" (https://www.kitco.com/opinion/2026-11-06/why-funding-not-geology-bottleneck-most-juniors).
+- Kitco, 2026-11-06, columna de opinión titulada "Why funding, not geology, is the bottleneck for most juniors". Cita textual: "In my experience geology is rarely what stops a company. The money usually is." (https://www.kitco.com/opinion/2026-11-06/why-funding-not-geology-bottleneck-most-juniors).
 
 Instrumentos habituales (conocimiento general del sector, sin fuente releída): colocaciones privadas con warrants, flow-through shares en Canadá, placements en ASX, acuerdos de earn-in con mineras grandes, regalías y streaming.
 
@@ -98,11 +98,11 @@ Instrumentos habituales (conocimiento general del sector, sin fuente releída): 
 
 - Presupuesto de exploración 2024: **USD 493,4 M**, el más alto desde el récord de 2012 ([V], Secretaría de Minería con datos de S&P y prensa: https://eleconomista.com.ar/energia/argentina-alcanza-cifras-record-exploracion-minera-2024-esta-provincia-capto-mas-n80358/amp). CAEM redondea a USD 500 M.
 - En 2024 Argentina fue el sexto país del mundo en inversión exploratoria, con un crecimiento de 251% contra 2014 ([F1], Bolsa de Comercio de Rosario: https://www.bcr.com.ar/es/print/pdf/node/110402).
-- Por mineral en 2024: cobre USD 200,2 M, litio USD 127 M ([F1], informe oficial https://www.argentina.gob.ar/sites/default/files/presupuestos_exploratorios_2025.pdf; conviene releer el PDF porque los encabezados no dejan clara la correspondencia por año).
+- Por mineral en 2024: cobre USD 200,2 M, litio USD 127 M ([V], Secretaría de Minería, abril de 2025, con datos de S&P tomados el 21/03/2025: https://www.argentina.gob.ar/sites/default/files/presupuestos_exploratorios_2025.pdf; el PDF dice "para cobre en 2024" y "para litio en 2024"). Oro USD 135,8 M.
 - En 2025 el cobre lideró por primera vez el presupuesto exploratorio del país ([F1], CAEM: https://caem.com.ar/storage/2025/08/caem-cobre-escenario-y-potencial-2025.pdf). La exploración de litio bajó.
-- Grassroots en Argentina: se triplicó a USD 66 M en 2025 desde USD 18 M en 2024, en gran parte por NGEx en Lunahuasi ([F1], S&P: https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/06/copper-exploration-budgets-hit-12-year-high-but-a-thinning-pipeline-signals-supply-risk).
+- Grassroots de cobre en Argentina: se triplicó a USD 66 M en 2025 desde USD 18 M en 2024, en gran parte por NGEx en Lunahuasi ([F1], S&P: https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/06/copper-exploration-budgets-hit-12-year-high-but-a-thinning-pipeline-signals-supply-risk).
 - **Presupuesto total de exploración de Argentina en 2025: [INPUT]**. No aparece una cifra cerrada en fuentes abiertas al 2026-11-13.
-- Cartera nacional: 316 proyectos (oficial, marzo de 2025: https://argentina.gob.ar/sites/default/files/requerimientos_de_infraestructura_para_el_desarrollo_del_sector_minero_2025.pptx.pdf).
+- Cartera nacional: 316 proyectos ([INPUT] confirmar: el PDF citado está fechado en febrero de 2025 y la cifra no aparece en su texto extraíble: https://argentina.gob.ar/sites/default/files/requerimientos_de_infraestructura_para_el_desarrollo_del_sector_minero_2025.pptx.pdf).
 
 Para el RIGI y la lista de proyectos mineros aprobados y en evaluación, ver la investigación de Saltar: [mineria-y-clientes-chilenos-7-11.md](../../../../hackathon-twin/agentes/hackatwin-mixtoC-diseno/docs/investigacion/mineria-y-clientes-chilenos-7-11.md) y [numeros.md](../../../../hackathon-twin/agentes/hackatwin-mixtoC-diseno/docs/investigacion/numeros.md). El RIGI apunta a proyectos grandes y queda fuera del segmento de exploración temprana; pesa como señal de clima y como salida para quien descubre.
 
@@ -120,7 +120,7 @@ Para el RIGI y la lista de proyectos mineros aprobados y en evaluación, ver la 
 | Etapa | Costo | Fuente | Estado |
 |---|---|---|---|
 | Perforación diamantina, tarifa base | USD 110 a 250 por metro | Blog de proveedor: https://farmonaut.com/?p=122587 | [F1] |
-| Programa argentino real, todo incluido | USD 1,088 M por 1.250 m, unos USD 870 por metro | El Quevar: https://www.panorama-minero.com/en/news/el-quevar-project-discovery-of-new-exploration-target-and-commencement-of-summer-drill-program | [F1] |
+| Programa argentino real, todo incluido | [INPUT] La cifra anterior (USD 1,088 M por 1.250 m, unos USD 870 por metro) no figura en la fuente citada, que solo informa 12.000 a 15.000 m entre noviembre de 2025 y junio de 2026, sin monto | El Quevar, 2025-11-14: https://www.panorama-minero.com/en/news/el-quevar-project-discovery-of-new-exploration-target-and-commencement-of-summer-drill-program | [INPUT] |
 | Mapeo, muestreo y geofísica terrestre de una propiedad | USD 50.000 a 300.000 | Orden de magnitud propio | [E] |
 | Primer programa de 2.000 m | USD 0,6 a 1,5 M | Orden de magnitud propio | [E] |
 | Geoquímica y geofísica a precios locales | [INPUT] | Pedir cotización a un laboratorio (ALS, SGS) y a una consultora del NOA | [INPUT] |
@@ -133,15 +133,15 @@ Para el RIGI y la lista de proyectos mineros aprobados y en evaluación, ver la 
 | Earth AI | Targeting con IA más perforación propia | Descubre y vende el proyecto | USD 20 M Serie B (ene. 2025) [V] https://www.mining.com/?p=1170737 | Activo | Vender estudios queda chico frente a quedarse con el hallazgo |
 | Fleet Space (ExoSphere) | Satélites, sensores sísmicos e IA | Servicio a mineras | AUD 150 M Serie D, valuación sobre AUD 800 M (dic. 2024) [V] https://www.satellitetoday.com/finance/2024/12/12/fleet-space-raises-95m-in-series-d-funding-round/ | Activo | El servicio escala con hardware propio y clientes grandes |
 | VerAI | Generador de activos con IA | Pide tierra y retiene regalías | USD 12 M Serie A [F1]; E&MJ habla de USD 24 M https://www.e-mj.com/departments/suppliers-report/verai-lands-24m-investment/ | Activo | Mismo patrón: upside sobre la tierra |
-| Terra AI | IA para exploración mineral y de reservorios | Software y servicio | USD 20 M Serie A (2026-06-03, Khosla y BHP Ventures) más USD 3,4 M semilla (2023) [V] https://www.canadianminingjournal.com/news/terra-ai-raises-20m-in-push-for-ai-driven-mineral-discovery/ | Activo | Las mineras grandes invierten en la capa de datos |
+| Terra AI | IA para exploración mineral y de reservorios | Software y servicio | USD 20 M Serie A (2026-06-03, Khosla y BHP Ventures) [V] https://www.canadianminingjournal.com/news/terra-ai-raises-20m-in-push-for-ai-driven-mineral-discovery/ | Activo. Semilla de USD 3,4 M (2023): [INPUT] fuente, la nota citada no la menciona | Las mineras grandes invierten en la capa de datos |
 | SensOre | Targeting con ML | Servicio y proyectos propios | AUD 7,5 M en IPO de ASX (2022) y USD 1,5 M de Alpha Future Funds [F1] https://www.miningnews.net/partners/partner-content/1422570/ai-mining-technology-company-sensore-launches-ipo-funding-round | Escindida de Premier1 Lithium, fecha sin confirmar | El modelo de solo servicio levanta poco |
 | Minestarters (Reino Unido) | Financiamiento tokenizado de exploración | Plataforma curada | GBP 3 M comprometidos por Power Metal Resources [F1] https://www.cruxinvestor.com/posts/power-metal-backs-blockchain-revolution-in-mining-finance-with-ps3m-minestarters-investment | Pre-escala; prevé rechazar 90 a 95% de los postulantes | El filtro de proyectos es el producto |
 | MINE Network | Financiamiento minero estilo DAO | Token | Unos USD 2 M (2024) [F1], sin URL releída | [INPUT] estado 2026 | Sin verificación de proyectos, queda marginal |
 | NatGold | Token de oro sin extraer | 1 token por recurso certificado | 106.800 NATG emitidos (2026) [F1] https://persportaal.anp.nl/artikel/CSN-090726165/natgold-digital-addresses-delay-in-commencement-of-natg-trading-and-completes-tokenization-of-second-us-gold-property | White paper MiCA publicado el 2026-05-07; trading demorado, reportado en MEXC el 2026-07-30 | Poner valor al mineral en el suelo atrae la crítica por NI 43-101 |
 | AZX1 de Bridgetower (Avalanche) | Security token del proyecto DOM X de cobre y oro en Arizona | Token con Chainlink Proof of Reserve | Presentado como USD 11.000 M [F1] https://cryptobriefing.com/bridgetower-tokenizes-11b-assets-avalanche/ | Unos USD 10.700 M de RWA "representado" en Avalanche son este único token, que no circula [F1] https://crypto.news/avalanche-lands-11b-bridgetower-deal-rwa-assets-2-1b/ | Comparable más cercano en la misma cadena; una valuación de titular sin liquidez resta credibilidad |
-| Atómico3 (Argentina) | Token "por kilo" de litio | PSAV que vendía el token | [INPUT] monto recaudado | Suspendido por la CNV y denunciado penalmente en julio de 2025; amparo rechazado en agosto de 2025; sin sentencia penal hallada en 2026 [V] https://www.cronista.com/finanzas-mercados/cnv-suspende-por-primera-vez-a-una-empresa-cripto-y-la-denuncia-en-la-justicia y https://www.iproup.com/economia-digital/59368-por-que-rechazaron-el-amparo-de-atomico-3-contra-la-cnv | Falló en lo que Cateo atesta: de quién es el permiso y qué hay en el terreno |
+| Atómico 3 (Argentina) | Token "por kilo" de litio | PSAV que vendía el token | Sin monto confirmado; damnificados estiman unos USD 2 M (2025) [F1], ver [riesgos-y-legal.md](riesgos-y-legal.md) | Suspendido por la CNV y denunciado penalmente en julio de 2025; amparo rechazado en agosto de 2025; sin sentencia penal hallada en 2026 [V] https://www.cronista.com/finanzas-mercados/cnv-suspende-por-primera-vez-a-una-empresa-cripto-y-la-denuncia-en-la-justicia y https://www.iproup.com/economia-digital/59368-por-que-rechazaron-el-amparo-de-atomico-3-contra-la-cnv | Falló en titularidad (permiso de un tercero) y en verificabilidad. Cateo hoy cubre la segunda: el expediente va declarado y sin verificar hasta el cruce con catastro |
 
-Dato en conflicto sobre Atómico3: iProfesional informa una filial argentina "aprobada" y un acuerdo con Hua Lian Mining en junio de 2026 (https://www.iprofesional.com/tecnologia/429664-criptomoneda-litio-atomico-3-abrio-filial-argentina-aprobada-por-gobierno-javier-milei), que no pude conciliar con la suspensión. Queda como [INPUT] hasta ver el registro de PSAV de la CNV.
+Nota sobre Atómico 3: la nota de iProfesional sobre la filial argentina "aprobada" es del 30/05/2025, anterior a la suspensión del 14/07/2025 (https://www.iprofesional.com/tecnologia/429664-criptomoneda-litio-atomico-3-abrio-filial-argentina-aprobada-por-gobierno-javier-milei). La nota no nombra a Hua Lian Mining; ese dato sale de Cronista. Estado registral a 2026: [INPUT], ver el registro de PSAV de la CNV.
 
 Otros antecedentes: el crowdfunding de equity para minería (Red Cloud Klondike Strike, Equitise, ExplorationFunder) fue chico y de 2014 a 2016, con un caso documentado de USD 25.000 ([F1], https://www.mining-technology.com/features/featureexplorationfunder-crowdsourcing-natural-resources-mining-investment/). Kinka (oro en bóveda) tiene unos 480 tokens ([F1], https://www.coingecko.com/coins/kinka). Sin verificar: que ALS haya comprado GoldSpot, y los fondos de Exploration.ai.
 
@@ -172,17 +172,17 @@ Supuesto central: entre 2% y 5% del gasto de exploración va a targeting y teled
 | TAM global | USD 12.400 M (2025, S&P) × 2% a 5% | USD 250 a 600 M por año |
 | SAM América Latina | USD 12.400 M × 25% (participación supuesta, la real es [INPUT]) = unos USD 3.000 M; × 2% a 5% | USD 60 a 150 M por año |
 | SAM Argentina | USD 493 M (2024) × 2% a 5% | USD 10 a 25 M por año |
-| SOM a 2 o 3 años, solo estudios | 30 a 100 estudios pagos por año × USD 500 a 5.000 | USD 15.000 a 500.000 por año |
-| SOM con comisión sobre colectas | 3% a 7% de lo levantado vía un socio registrado. Con 5 colectas de USD 200.000 por año: USD 1 M × 3% a 7% | USD 30.000 a 70.000 por año adicionales |
+| SOM a 2 o 3 años, solo estudios | 30 a 100 estudios pagos por año × USD 300 (estudio base propuesto en modelo-de-negocio.md, sin validar con entrevistas) | USD 9.000 a 30.000 por año |
+| SOM con comisión sobre colectas | 3% a 7% de lo levantado vía un socio registrado. Con 5 colectas de USD 150.000 por año (mismo supuesto que modelo-de-negocio.md): USD 750.000 × 3% a 7% | USD 22.500 a 52.500 por año adicionales |
 
 Lectura: vender estudios sueltos da un negocio chico. El ingreso que mueve la aguja es la comisión sobre capital levantado y los contratos con quien hace due diligence (inversores, PSAV, gobiernos provinciales). El detalle de clientes y precios está en [modelo-de-negocio.md](modelo-de-negocio.md).
 
 ## Las 5 conclusiones
 
-1. **El dato cuesta cero y la Puna es terreno casi ideal.** Sentinel-2, ASTER y EMIT se piden hoy para cualquier polígono árido. El nivel premium comercial agrega entre USD 100 y 3.400 por cateo de 100 km².
-2. **El cuello de botella es el capital.** La exploración temprana recibe el 12% de lo levantado en TSX y TSXV (2025) y el grassroots global está en mínimo histórico (21% en 2025), mientras el grassroots argentino se triplicó a USD 66 M.
+1. **El dato cuesta cero y la Puna es terreno casi ideal.** Sentinel-2 cubre cualquier polígono árido cada 5 días; ASTER y EMIT dependen de que exista escena de archivo. El nivel premium comercial agrega entre USD 100 y 3.400 por cateo de 100 km².
+2. **El cuello de botella es el capital.** La exploración temprana recibe el 12% de lo levantado en TSX y TSXV (2025) y el grassroots global está en mínimo histórico (21% en 2025), mientras el grassroots de cobre en Argentina se triplicó a USD 66 M.
 3. **El estudio satelital es pre-exploración.** Muestra alteración superficial y sirve para decidir dónde muestrear. Cualquier mención de ley, tonelaje o valor queda fuera del producto, y los casos NatGold y AZX1 muestran el costo de cruzar esa línea.
-4. **El hueco del mercado es la procedencia verificable.** Atómico3 cayó porque el permiso estaba a nombre de un tercero y nada se podía comprobar. Una atestación recomputable de polígono, titular declarado y evidencia espectral apunta justo ahí.
+4. **El hueco del mercado es la procedencia verificable.** Atómico 3 cayó porque el permiso estaba a nombre de un tercero y nada se podía comprobar. Una atestación recomputable de polígono y evidencia espectral cubre la parte comprobable; la titularidad sigue declarada hasta el cruce con catastro.
 5. **Como venta de estudios el mercado es chico; como capa de confianza para levantar capital tiene escala.** Los ganadores bien financiados se quedan con la tierra. Cateo gana si se vuelve el paso de verificación que exigen inversores y plataformas registradas antes de una colecta.
 
 ## Pendientes de este documento
@@ -192,6 +192,8 @@ Lectura: vender estudios sueltos da un negocio chico. El ingreso que mueve la ag
 - [INPUT] Cantidad de cateos y minas vigentes en Salta, y fecha del dato de superficie.
 - [INPUT] Fórmulas exactas de los cocientes de Sentinel-2 contra el paper original.
 - [INPUT] Precios locales de geoquímica y geofísica.
-- [INPUT] Estado registral actual de Atómico3 y monto que recaudó.
+- [INPUT] Estado registral actual de Atómico 3 y monto confirmado que recaudó.
+- [INPUT] Fuente de: 316 proyectos, costo del programa de El Quevar, 45% de exploración en mina, semilla de Terra AI y precios de Satellogic fuera del tasking.
+- [INPUT] Unificar precio por estudio y colecta típica entre el SOM y modelo-de-negocio.md.
 - [INPUT] Precio por km² de Planet SkySat y Albedo.
 - [INPUT] Estado 2026 de MINE Network, dClimate, Copernic Space, SpaceChain y SkyTrade.

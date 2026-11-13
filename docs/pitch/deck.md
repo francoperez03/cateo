@@ -8,9 +8,9 @@
 
 - El titular de un cateo necesita plata para el primer programa de campo.
 - Quien podría ponerla no tiene cómo verificar el área, el dato ni al titular.
-- En 2025 la CNV suspendió y denunció a Atómico3: permisos a nombre de un tercero.
+- En 2025 la CNV suspendió y denunció a Atómico 3: permisos a nombre de un tercero.
 
-Notas del orador: abrir con el caso local. Atómico3 vendía un token de litio y los permisos no eran suyos (julio de 2025). El problema de fondo es la confianza. Dato de contexto: los exploradores en etapa inicial recibieron el 12% de lo colocado en TSX y TSXV en 2025 (fuente única, Crux Investor).
+Notas del orador: abrir con el caso local. Atómico 3 vendía un token de litio y los permisos no eran suyos (julio de 2025). El problema de fondo es la confianza. Dato de contexto: los exploradores en etapa inicial recibieron el 12% de lo colocado en TSX y TSXV en 2025 (fuente única, Fastmarkets, abril de 2026).
 
 ## Slide 2 · Solución
 
@@ -30,7 +30,7 @@ Notas del orador: decir en voz alta el límite. El estudio muestra alteración s
 - El satélite calcula B04/B02 (óxidos férricos) y B11/B12 (arcillas) y llama a `atestar` con el hash del informe.
 - `crearColecta` solo acepta estudios atestados; los aportes van a escrow con reembolso.
 
-Notas del orador: mostrar el diagrama de una línea. Datos: Earth Search STAC, colección sentinel-2-c1-l2a, sin clave. Atribución en pantalla: "Contains modified Copernicus Sentinel data 2026". Red: Fuji C-Chain, chain ID 43113.
+Notas del orador: mostrar el diagrama de una línea. Datos: Earth Search STAC, colección sentinel-2-c1-l2a, sin clave. Atribución en pantalla: "Contains modified Copernicus Sentinel data [año de la escena]". Red: Fuji C-Chain, chain ID 43113.
 
 ## Slide 4 · Por qué blockchain
 
@@ -68,6 +68,6 @@ Notas del orador: los precios son propuesta inicial, a validar con 5 entrevistas
 
 - Quórum de firmantes o Chainlink CRE, y cruce con el catastro minero de Salta.
 - Co-firma de un geólogo matriculado y socio PFC o PSAV (RG 1125, sandbox hasta el 31/12/2027).
-- Fuentes: Copernicus Sentinel-2 vía Earth Search, CNV, Código de Minería (Ley 24.287), Avalanche docs.
+- Fuentes: Copernicus Sentinel-2 vía Earth Search, CNV, Código de Minería (Ley 24.498), Avalanche docs.
 
 Notas del orador: cerrar con el pedido concreto: contactos en la Secretaría de Minería de Salta, en REMSA y en una plataforma de financiamiento colectivo registrada. Equipo: [INPUT]. Links: repo [INPUT], demo [INPUT].

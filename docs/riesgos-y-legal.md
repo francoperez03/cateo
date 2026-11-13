@@ -55,7 +55,7 @@ Costos de trámite en Salta (Ley 8499): 51.500 unidades tributarias por solicitu
 
 ### Qué significa para Cateo
 
-- Dibujar un polígono no prueba nada sobre quién tiene el derecho. La titularidad se prueba con el número de expediente y la constancia del juzgado o autoridad minera.
+- La titularidad se prueba con el número de expediente y la constancia del juzgado o autoridad minera. El polígono dibujado queda como área declarada.
 - En el MVP el expediente va **declarado** por quien pide el estudio y la pantalla lo dice así.
 - En producción hacen falta dos cosas: cruce automático del polígono con el catastro (donde haya capa pública) y una constancia de titularidad firmada por escribano o emitida por la autoridad minera, registrada como atestación separada de la satelital.
 
@@ -139,7 +139,7 @@ Texto del Boletín Oficial del 07/04/2026:
 - Quedan fuera de la CNV los financiamientos colectivos que no involucren valores negociables (art. 144). Una donación o una precompra sin expectativa de renta entran ahí. Una colecta de exploración con retorno queda adentro [E].
 - La RG 1125 no habla de tokenización. Eso lo resuelve la RG 1150.
 
-Referencia de escala: UVA a $2.156,58 al 15/10/2026 [U]: https://indicadores.ar/indicadores-economicos/uva. Entonces 3.000 UVA son unos $6,5 millones y 10.000 UVA unos $21,6 millones [E]. **[INPUT]** valor UVA del día y tipo de cambio para expresarlo en dólares.
+Referencia de escala: UVA a $2.194,78 al 13/11/2026 [U]: https://indicadores.ar/indicadores-economicos/uva (el valor anterior de este documento, $2.156,58 al 15/10/2026, no aparece en la fuente). Entonces 3.000 UVA son unos $6,6 millones y 10.000 UVA unos $21,9 millones [E]. **[INPUT]** tipo de cambio para expresarlo en dólares.
 
 ### RG 1150: cómo es un valor tokenizado [V]
 
@@ -193,7 +193,7 @@ El contrato del MVP es abierto: cualquiera aporta desde cualquier wallet. Eso es
 | 30/05/2025 | Anuncia filial argentina y se presenta como inscripta en el registro PSAV. Declara un acuerdo de tokenización sobre 50.000 ha en los Salares de Mogna (San Juan) | [U] https://www.iprofesional.com/tecnologia/429664-criptomoneda-litio-atomico-3-abrio-filial-argentina-aprobada-por-gobierno-javier-milei |
 | Junio 2025 | Denuncias de inversores ante la CNV (ID 5773 y 5775). Se abre el expediente 272/2025. Lanza un segundo token ligado al cobre | [V] resolución CNV · [U] cronología de Agenda Industrial |
 | 14/07/2025 | Resolución RRFCO-2025-303-APN-DIR#CNV: la CNV resuelve denunciar penalmente a Atómico 3 S.A., PSAV N.º 103, por posible estafa (art. 172 del Código Penal), con base en el art. 177 del Código Procesal Penal y el art. 20 de la Ley 26.831. El mismo día, resolución conjunta de suspensión preventiva como PSAV, sin plazo: "hasta tanto existan hechos posteriores que justifiquen su revisión" | [V] texto de la resolución: https://argentina.gob.ar/sites/default/files/2025_-_3.1_-_303_fc.pdf · [V] suspensión: https://www.marval.com/Publicacion/primera-sancion-de-la-cnv-a-un-psav-17262 |
-| Julio 2025 | Motivo informado: la empresa tenía solo un permiso de exploración y a nombre de un tercero. La autoridad minera de San Juan no registra títulos ni proyectos de Atómico 3 en Mogna. Monto mencionado en prensa: unos US$ 2 millones | [V, dos fuentes] https://www.cronista.com/finanzas-mercados/cnv-suspende-por-primera-vez-a-una-empresa-cripto-y-la-denuncia-en-la-justicia · https://www.criptonoticias.com/sucesos/empresa-argentina-criptomonedas-denuncia-estafa-cnv-atomico/ · monto [U]: https://www.eldestapeweb.com/economia/estafa/la-cnv-denuncio-a-una-cripto-por-fraude-por-us-2-millones-con-un-proyecto-de-litio-202571616529 |
+| Julio 2025 | Motivo informado: la empresa tenía solo un permiso de exploración y a nombre de un tercero. La autoridad minera de San Juan no registra títulos ni proyectos de Atómico 3 en Mogna. Monto mencionado en prensa: unos US$ 2 millones, estimación de damnificados sobre unos 300 holders; los 14 denunciantes argentinos suman cerca de US$ 500.000. Sin cifra oficial | [V, dos fuentes] https://www.cronista.com/finanzas-mercados/cnv-suspende-por-primera-vez-a-una-empresa-cripto-y-la-denuncia-en-la-justicia · https://www.criptonoticias.com/sucesos/empresa-argentina-criptomonedas-denuncia-estafa-cnv-atomico/ · monto [U]: https://www.eldestapeweb.com/economia/estafa/la-cnv-denuncio-a-una-cripto-por-fraude-por-us-2-millones-con-un-proyecto-de-litio-202571616529 |
 | Agosto 2025 | El Juzgado Civil y Comercial Federal de feria rechaza el amparo de la empresa contra la suspensión | [V, dos fuentes] https://www.diariodecuyo.com.ar/economia/rechazaron-un-amparo-a-la-empresa-acusada-de-estafar-con-cripto-de-litio-sanjuanino-1763018.html (26/08/2025) · https://www.iproup.com/economia-digital/59368-por-que-rechazaron-el-amparo-de-atomico-3-contra-la-cnv |
 | Sin fecha | La empresa sostiene que presentó pruebas técnicas que descartan el delito | [U, parte interesada] https://territorioblockchain.com/pablo-rutigliano-y-atomico-3-desarticulan-la-operacion-de-la-cnv-pruebas-tecnicas-confirman-la-inexistencia-de-delito/ |
 | Noviembre 2026 | **[INPUT]** estado de la causa penal y de la suspensión. No aparecieron novedades fechadas en 2026 | sin fuente |
@@ -246,7 +246,7 @@ Tres, en cadena. El pago del estudio emite `EstudioPedido` con el polígono comp
 Se nota y se puede probar. El polígono, la escena y la versión del algoritmo están en la cadena, así que cualquiera corre `satelite/verificar.mjs`, recalcula y compara contra el hash atestado. Si no coincide, el firmante queda expuesto con una prueba pública. Mientras la colecta está abierta la plata sigue en escrow. Límites que se dicen en voz alta: hoy hay un solo firmante, la titularidad del pedimento va declarada, y si el creador ya retiró no hay recupero. El paso siguiente es quórum de firmantes (o Chainlink CRE) y una ventana de disputa antes del retiro.
 
 **4. ¿Quién paga o cobra, y cuánto?**
-Quien pide el estudio paga un precio fijo en USDC al contrato, que cobra Cateo. **[INPUT]** precio final: el rango de trabajo para el tier con datos gratuitos es de US$ 100 a 500 por estudio [E], detalle en `modelo-de-negocio.md`. Los aportantes ponen USDC en la colecta y lo cobra el creador si se alcanza la meta. En la demo no hay comisión sobre la colecta. En producción, una comisión sobre lo recaudado solo puede cobrarse a través del socio registrado que coloca.
+Quien pide el estudio paga un precio fijo en USDC al contrato, que cobra Cateo. **[INPUT]** precio final: la propuesta para el estudio con datos gratuitos es de US$ 300, con mínimo de US$ 100 hasta 10 km² [E], detalle en `modelo-de-negocio.md`. Los aportantes ponen USDC en la colecta y lo cobra el creador si se alcanza la meta. En la demo no hay comisión sobre la colecta. En producción, una comisión sobre lo recaudado solo puede cobrarse a través del socio registrado que coloca.
 
 ## Pendientes
 

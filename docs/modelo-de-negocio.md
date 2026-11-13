@@ -20,20 +20,20 @@ Un estudio espectral reproducible sobre un polígono, con atestación en Avalanc
 |---|---|---|---|---|---|
 | Titular de pedimento o pequeño minero | Tiene el cateo y ningún material creíble para mostrarle a un socio o inversor | Informe de un geólogo conocido o nada. Precio local de un informe de teledetección: [INPUT] | USD 100 a 500 por estudio [E] | Días, venta directa o por referido | Sin entrevistas. Hipótesis |
 | Junior de exploración | Levantar capital temprano: los exploradores en etapa inicial recibieron el 12% de lo colocado en TSX y TSXV en 2025 [F] | Consultora o plataforma de teledetección. TerraEye cobra por puntos: Sentinel-2 1 punto por km², EMIT 5, mapa de prospectividad 400 (2024), sin conversión pública a USD [F]. Geólogo senior: USD 1.000 por día en una propuesta de 2024 para trabajo de campo en Salta [F] | USD 1.000 a 10.000 por un estudio de escritorio [E] | Semanas, un decisor técnico | Sin entrevistas. Hipótesis |
-| Inversor o PSAV haciendo due diligence | Verificar de forma independiente que el polígono existe, muestra lo que dicen y es de quien dice serlo (caso Atómico3, 2025) | Due diligence legal y técnica a medida. Precio: [INPUT] | La más alta por estudio: USD 500 a 5.000, más suscripción [E] | Semanas a meses, exige revisión legal | Sin entrevistas. Hipótesis más fuerte |
+| Inversor o PSAV haciendo due diligence | Verificar de forma independiente que el polígono existe, muestra lo que dicen y es de quien dice serlo (caso Atómico 3, 2025) | Due diligence legal y técnica a medida. Precio: [INPUT] | La más alta por estudio: USD 500 a 5.000, más suscripción [E] | Semanas a meses, exige revisión legal | Sin entrevistas. Hipótesis más fuerte |
 | Gobierno provincial (REMSA en Salta, JEMSE en Jujuy, CAMYEN en Catamarca) | Poner en valor áreas propias para licitarlas. CAMYEN tuvo dos llamados desiertos (Gold Nugget y Filo de las Vicuñas) [F] | Relevamientos propios y consultoría por licitación. Hay licitaciones de consultoría geológico-minera en Argentina con presupuestos del orden de USD 100.000 [F] | USD 20.000 a 50.000 por contrato de capa de prospectividad sobre un paquete de áreas [E] | 6 a 12 meses, compra pública | Sin contacto. Hipótesis |
 
 Fuentes de la tabla:
-- 12% etapa inicial en TSX y TSXV, 2025: https://www.cruxinvestor.com/posts/shrinking-discovery-budgets-raise-the-value-of-funded-explorers
+- 12% etapa inicial en TSX y TSXV, 2025 (Fastmarkets, 2026-04-30): https://www.fastmarkets.com/insights/critical-minerals-boom-boosts-growth-stage-juniors-hotter-commodities/
 - Puntos de TerraEye, 2024: https://terraeye.blogspot.com/2024/11/terraeyes-points-based-system-powering.html
 - Geólogo senior a USD 1.000 por día, propuesta a PPSA para un curso de campo en Salta, 2024 (es docencia de campo, sirve solo como orden de magnitud): https://www.presalpetroleo.gov.br/wp-content/uploads/2024/12/3-PROPUESTA_CT-PPSA-034-2024-Curso-Geologico-de-campo_TL.pdf
 - Licitación de consultoría geológico-minera con presupuesto de USD 100.000: https://www.developmentaid.org/tenders/view/1723016/estandarizacion-internacional-del-reporte-de-recursos-y-reservas-mineras-en-argentina-hoja-de-ruta-i
 - CAMYEN, plan 2026 y llamados desiertos, 2026: https://www.elancasti.com.ar/politica-y-economia/camyen-proyecta-ampliar-exploraciones-y-atraer-inversiones-2026-n602346
-- Atómico3: ver `riesgos-y-legal.md`.
+- Atómico 3: ver `riesgos-y-legal.md`.
 
 Qué no apareció en la búsqueda del 2026-11-13: ninguna tarifa publicada de consultoras por un estudio de teledetección o un informe de targets en Argentina o LatAm. Queda como [INPUT] y es la primera pregunta de las entrevistas.
 
-Orden de ataque recomendado: primero el inversor o PSAV (paga más por estudio y su necesidad es la verificación, que es justo lo que la atestación aporta), después juniors, después gobierno. El pequeño minero es el caso de uso del relato y de la demo, con el riesgo de fraude más alto y la menor capacidad de pago.
+Orden de ataque recomendado: primero el inversor o PSAV (paga más por estudio y su necesidad es la verificación: la atestación cubre hoy el área y el dato, y la titularidad recién con la etapa 3 de la hoja de ruta), después juniors, después gobierno. El pequeño minero es el caso de uso del relato y de la demo, con el riesgo de fraude más alto y la menor capacidad de pago.
 
 ## Precios
 
@@ -71,7 +71,7 @@ Supuestos del ejemplo:
 | Costo | Cálculo | Monto |
 |---|---|---|
 | Imágenes | Sentinel-2 L2A abierto, vía Earth Search sobre AWS, sin clave | USD 0 [V] |
-| Cómputo | 100 km² a 10 m son 1 millón de píxeles por banda, cuatro bandas. Segundos de CPU en una función serverless | menos de USD 0,01 [E] |
+| Cómputo | 100 km² en la grilla de 20 m que usa `estudio.mjs` son 250.000 píxeles por banda, cuatro bandas más la máscara SCL. Segundos de CPU en una función serverless | menos de USD 0,01 [E] |
 | Gas en Avalanche | Dos transacciones (pedido con el GeoJSON en el evento, y atestación), unas 300.000 unidades de gas [E]. Con la base mínima de 5 nAVAX vigente desde fines de septiembre de 2026 [V]: 300.000 × 5 nAVAX = 0,0015 AVAX | menos de USD 0,15 con AVAX por debajo de USD 100. Precio de AVAX: [INPUT] |
 | Total variable | | menos de USD 0,20 |
 
@@ -89,7 +89,7 @@ En el premium, el margen es el 30% sobre la imagen. El riesgo es el mínimo de c
 Todo este bloque es [E]. Sirve para ver órdenes de magnitud y qué línea pesa.
 
 Supuestos:
-- Universo: 316 proyectos mineros en la cartera nacional (oficial, marzo de 2025) [V] y 57 proyectos de litio en Salta, Catamarca y Jujuy (diciembre de 2025) [F]. Cantidad de cateos activos en Salta: [INPUT].
+- Universo: 316 proyectos mineros en la cartera nacional ([INPUT] confirmar: la cifra no aparece en el texto del PDF citado, fechado en febrero de 2025) y 57 proyectos de litio en Salta, Catamarca y Jujuy (diciembre de 2025) [F]. Cantidad de cateos activos en Salta: [INPUT].
 - Precios de la tabla de arriba, sin cambios.
 - Margen premium promedio de USD 1.000 por estudio (mezcla de Wyvern y WorldView-3).
 - Colecta promedio de USD 150.000, comisión del 5%, la mitad para Cateo.

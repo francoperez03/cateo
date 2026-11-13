@@ -17,8 +17,8 @@ export const AREA_MAX_KM2 = 100 // un cateo completo (20 unidades de 500 ha)
 // Perillas de calibracion. Son umbrales de partida sobre reflectancia de superficie, no verdad geologica:
 // se ajustan contra muestras de campo (espectrometro SWIR) antes de usarse para decidir nada.
 export const UMBRALES = {
-  oxidos: 2.0, // B04/B02, oxidos ferricos (van der Meer et al. 2014)
-  arcillas: 1.25, // B11/B12, hidroxilos / arcillas
+  oxidos: 2.0, // B04/B02 (rojo/azul), cociente de uso corriente para oxidos ferricos; sin calibrar
+  arcillas: 1.25, // B11/B12 (SWIR1/SWIR2), cociente de uso corriente para hidroxilos y arcillas; sin calibrar
 }
 // Clases SCL que se descartan: sin dato, saturado, sombra, agua, nubes, cirrus, nieve.
 const SCL_MALO = new Set([0, 1, 3, 6, 8, 9, 10, 11])

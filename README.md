@@ -58,6 +58,6 @@ node web/satelite/verificar.mjs 0
 - `docs/estudio-de-mercado.md`: qué ve un satélite, datos y precios, financiamiento, competencia, TAM/SAM/SOM.
 - `docs/modelo-de-negocio.md`: clientes, precios, economía unitaria, llegada al mercado, entrevistas.
 - `docs/riesgos-y-legal.md`: propiedad minera, CNV, caso Atómico 3, tabla de riesgos, test de las 4 preguntas.
-- `docs/pitch/`: deck de 7 slides, guion de video de 100 segundos y pitch de un minuto con foco en mercado (`pitch-1-minuto.md`).
+- `docs/pitch/`: deck de 7 slides, guion de video de 100 segundos, pitch de un minuto con foco en mercado (`pitch-1-minuto.md`) y deck de modelo de negocio en PDF de 6 páginas con la impronta de Crisol (`deck-modelo-de-negocio/`).
 
 Datos: Contains modified Copernicus Sentinel data 2026, vía Earth Search (Element 84).

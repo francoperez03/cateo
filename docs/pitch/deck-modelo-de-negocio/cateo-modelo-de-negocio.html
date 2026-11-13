@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Cateo · modelo de negocio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FBFDFF; --bg-inset: #EEF3F9;
+    --ink: #002E56; --ink-soft: #2A3745; --ink-mute: #617388;
+    --hairline: rgba(0,46,86,0.12); --hairline-strong: rgba(0,46,86,0.24);
+    --accent: #007CEB;
+    --serif: "Fraunces", "PP Editorial New", Georgia, serif;
+    --sans: "Geist", "Inter", system-ui, sans-serif;
+    --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  /* 16:9: una slide por página, 1280×720 (escala a cualquier resolución). */
+  @page { size: 1280px 720px; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 18px; line-height: 1.5;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .slide { position: relative; width: 1280px; height: 720px; padding: 56px 88px 48px;
+    display: flex; flex-direction: column; overflow: hidden;
+    page-break-after: always; break-after: page; }
+  .slide:last-child { page-break-after: auto; break-after: auto; }
+
+  .slide-head { display: flex; align-items: baseline; justify-content: space-between;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); }
+  .slide-foot { margin-top: auto; padding-top: 16px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
+    color: var(--ink-mute); display: flex; justify-content: space-between; align-items: flex-end; }
+
+  /* Wordmark */
+  .wordmark { font-family: var(--serif); font-weight: 600; font-size: 30px; letter-spacing: -0.01em; }
+  .wordmark .studio { font-family: var(--mono); font-weight: 400; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; margin-left: 12px; }
+
+  /* Portada y cierre, navy invertidos. Sobre navy nada va en accent. */
+  .slide.cover { background: var(--ink); color: #FBFDFF; }
+  .slide.cover .slide-head { color: rgba(251,253,255,0.6); }
+  .slide.cover .wordmark { color: #FBFDFF; }
+  .slide.cover .wordmark .studio { color: rgba(251,253,255,0.6); }
+  .slide.cover .cover-title { font-family: var(--serif); font-weight: 500; font-size: 60px; line-height: 1.05; letter-spacing: -0.01em; max-width: 22ch; margin: auto 0 0 0; }
+  .slide.cover .cover-sub { font-family: var(--sans); font-weight: 300; font-size: 22px; line-height: 1.4; color: rgba(251,253,255,0.82); max-width: 50ch; margin: 20px 0 0 0; }
+  .slide.cover .cover-foot { margin-top: auto; padding-top: 40px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(251,253,255,0.6); display: flex; justify-content: space-between; }
+  .cta-eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(251,253,255,0.6); margin-bottom: 16px; }
+  .cta-url { font-family: var(--mono); font-weight: 500; font-size: 28px; letter-spacing: 0.02em; margin-top: 24px; }
+
+  /* Sección: número gigante en accent (el único accent de la slide) */
+  .section-num { font-family: var(--serif); font-weight: 500; font-size: 120px; line-height: 1; color: var(--accent); margin: auto 0 16px 0; }
+  .section-title { font-family: var(--serif); font-weight: 300; font-size: 56px; line-height: 1.05; letter-spacing: -0.01em; max-width: 22ch; }
+  .section-sub { font-family: var(--sans); font-weight: 300; font-size: 22px; color: var(--ink-soft); max-width: 50ch; margin-top: 16px; }
+
+  /* Contenido: eyebrow + una idea + bajada */
+  .eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-mute); margin: 40px 0 20px 0; }
+  .headline { font-family: var(--serif); font-weight: 300; font-size: 46px; line-height: 1.08; letter-spacing: -0.01em; max-width: 26ch; margin: 0; }
+  .headline.big { font-size: 52px; margin-top: auto; }
+  .lead { font-family: var(--sans); font-weight: 300; font-size: 22px; line-height: 1.45; color: var(--ink-soft); max-width: 52ch; margin: 20px 0 0 0; }
+  .body { margin-top: 28px; }
+  .note { font-family: var(--sans); font-weight: 300; font-size: 16px; color: var(--ink-mute); margin-top: 18px; max-width: 70ch; }
+  .mono { font-family: var(--mono); font-size: 14px; }
+
+  /* Patrón: tabla editorial (máx. 6 filas) */
+  table.tbl { border-collapse: collapse; width: 100%; font-size: 16px; line-height: 1.4; color: var(--ink-soft); }
+  table.tbl th { text-align: left; font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); padding: 0 20px 10px 0; border-bottom: 1px solid var(--hairline-strong); }
+  table.tbl td { padding: 10px 20px 10px 0; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+  table.tbl td:first-child { color: var(--ink); font-weight: 500; }
+  table.tbl td[rowspan] { vertical-align: middle; }
+  table.tbl code { font-family: var(--mono); font-size: 14px; }
+  table.tbl.compact td { padding: 7px 18px 7px 0; font-size: 15px; }
+
+  /* Patrón: pasos numerados (máx. 5) */
+  ol.steps { list-style: none; margin: 0; padding: 0; }
+  ol.steps li { display: grid; grid-template-columns: 44px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--hairline); font-size: 17px; color: var(--ink-soft); font-weight: 300; line-height: 1.45; }
+  ol.steps li span.n { font-family: var(--mono); font-size: 13px; color: var(--ink-mute); padding-top: 4px; }
+  ol.steps li b { color: var(--ink); font-weight: 500; }
+
+  /* Patrón: cifras (solo una en accent) */
+  .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+  .stat { font-family: var(--serif); font-weight: 300; font-size: 72px; line-height: 1; color: var(--ink); letter-spacing: -0.02em; }
+  .stat.a { color: var(--accent); }
+  .stat-label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-mute); margin-top: 10px; }
+
+  /* Patrón: flujo horizontal y bloque monospace */
+  .flow { font-family: var(--mono); font-size: 16px; line-height: 2; color: var(--ink); white-space: pre; margin: 0; }
+  .flow .m { color: var(--ink-mute); }
+  .flow.big { font-size: 22px; line-height: 1.6; }
+  .hex { font-family: var(--mono); font-size: 17px; line-height: 1.7; color: var(--ink); white-space: pre; margin: 0; }
+  .hex .k { color: var(--ink-mute); }
+  .hex .a { color: var(--accent); font-weight: 500; }
+
+  /* Patrón: dos columnas */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .col h3 { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin: 0 0 12px 0; padding-bottom: 8px; border-bottom: 1px solid var(--hairline-strong); }
+  .col p { margin: 0 0 12px 0; font-size: 17px; line-height: 1.5; color: var(--ink-soft); font-weight: 300; }
+  .col p b { color: var(--ink); font-weight: 500; }
+
+  /* Patrón: red de actores (solo tipografía y hairlines) */
+  .net { position: relative; width: 100%; height: 340px; margin-top: 12px; }
+  .net .center { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+    font-family: var(--serif); font-weight: 500; font-size: 40px; color: var(--ink); padding: 0 24px; background: var(--bg); }
+  .net .node { position: absolute; transform: translate(-50%,-50%); font-family: var(--sans); font-weight: 300; font-size: 22px; color: var(--ink-soft); background: var(--bg); padding: 4px 14px; white-space: nowrap; }
+  .net .line { position: absolute; left: 50%; top: 50%; width: 260px; height: 1px; background: var(--hairline-strong); transform-origin: 0 50%; }
+
+  /* Patrón: equipo (máx. 4) */
+  .team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-top: 28px; }
+  .team .person img, .team .person .ph { width: 160px; height: 160px; object-fit: cover; display: block; background: var(--bg-inset); }
+  .team .person .name { font-family: var(--serif); font-weight: 400; font-size: 22px; color: var(--ink); margin-top: 16px; line-height: 1.2; }
+  .team .person .role { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); margin-top: 6px; }
+
+  /* Patrón: caso (uno por slide, máx. 3 por deck) */
+  .case { display: grid; grid-template-columns: 1fr 240px; gap: 56px; margin-top: 8px; }
+  .case dl { margin: 0; }
+  .case dt { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); padding-top: 14px; border-top: 1px solid var(--hairline); }
+  .case dd { margin: 6px 0 14px 0; font-size: 17px; font-weight: 300; line-height: 1.5; color: var(--ink-soft); }
+  .case .logo { display: flex; align-items: flex-start; justify-content: flex-end; }
+  .case .logo img { max-width: 200px; max-height: 80px; }
+
+  /* Patrón agregado para esta pieza: cifra mediana, para valores con unidad */
+  .stat.m { font-size: 54px; }
+  .wordmark { text-transform: none; }
+  table.tbl td.num, table.tbl th.num { text-align: right; font-family: var(--mono); font-size: 15px; }
+  table.tbl tr.total td { color: var(--ink); font-weight: 500; border-bottom: 0; border-top: 1px solid var(--hairline-strong); }
+  table.tbl tr.total td.a { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- 01 · Portada -->
+<section class="slide cover">
+  <div class="slide-head"><div class="wordmark">Crisol</div><div>Cateo · 2026</div></div>
+  <h1 class="cover-title">Cateo</h1>
+  <p class="cover-sub">Modelo de negocio: quién paga por un estudio satelital que cualquiera puede verificar.</p>
+  <div class="cover-foot"><span>Argentina Space 2026 · Salta · noviembre de 2026</span><span>crisol.studio</span></div>
+</section>
+
+<!-- 02 · Qué se vende -->
+<section class="slide">
+  <div class="slide-head"><div>Qué se vende</div><div>02 / 06</div></div>
+  <p class="eyebrow">El producto</p>
+  <h2 class="headline">Un estudio de superficie atestado, que cualquiera puede recomputar.</h2>
+  <p class="lead">Imágenes de Sentinel-2 sobre un área, con la escena, el algoritmo y el resultado firmados en Avalanche. Sobre esa atestación se abre una colecta en custodia.</p>
+  <div class="body" style="margin-top:36px">
+<pre class="flow big">Área  <span class="m">──▶</span>  Estudio  <span class="m">──▶</span>  Atestación  <span class="m">──▶</span>  Colecta</pre>
+  </div>
+  <p class="note">El estudio muestra alteración de superficie: óxidos férricos y arcillas. Ley, tonelaje, valor y litio quedan fuera de lo que afirma.</p>
+  <div class="slide-foot"><span>crisol.studio</span><span>Cateo · modelo de negocio</span></div>
+</section>
+
+<!-- 03 · Clientes -->
+<section class="slide">
+  <div class="slide-head"><div>Clientes</div><div>03 / 06</div></div>
+  <p class="eyebrow">Quién paga</p>
+  <h2 class="headline">Paga mejor quien verifica antes de invertir.</h2>
+  <div class="body">
+  <table class="tbl compact">
+    <tr><th>Cliente</th><th>Qué le duele</th><th>Dispuesto a pagar</th><th>Ciclo de venta</th></tr>
+    <tr><td>Inversor o plataforma registrada</td><td>Comprobar por su cuenta qué muestra el área</td><td>USD 500 a 5.000 por estudio, más suscripción</td><td>Semanas a meses</td></tr>
+    <tr><td>Junior de exploración</td><td>Levantar capital temprano: 12% de TSX y TSXV en 2025</td><td>USD 1.000 a 10.000 por estudio</td><td>Semanas</td></tr>
+    <tr><td>Gobierno provincial</td><td>Poner en valor áreas propias para licitarlas</td><td>USD 20.000 a 50.000 por contrato</td><td>6 a 12 meses</td></tr>
+    <tr><td>Titular de pedimento</td><td>Ningún material creíble para mostrar a un socio</td><td>USD 100 a 500 por estudio</td><td>Días</td></tr>
+  </table>
+  </div>
+  <p class="note">Hipótesis: todavía no hay entrevistas. Los rangos son estimación propia. El 12% es de Fastmarkets (abril de 2026).</p>
+  <div class="slide-foot"><span>crisol.studio</span><span>Cateo · modelo de negocio</span></div>
+</section>
+
+<!-- 04 · Precios y costo -->
+<section class="slide">
+  <div class="slide-head"><div>Precios y costo</div><div>04 / 06</div></div>
+  <p class="eyebrow">Economía de un estudio</p>
+  <h2 class="headline">Producir un estudio cuesta centavos. La escala está en la colecta.</h2>
+  <div class="cols3" style="margin-top:44px">
+    <div><div class="stat m">USD 300</div><div class="stat-label">precio del estudio base, hasta 100 km²</div></div>
+    <div><div class="stat m">USD 0,20</div><div class="stat-label">costo variable máximo: imagen abierta, cómputo y gas</div></div>
+    <div><div class="stat m a">3 a 7%</div><div class="stat-label">comisión sobre colectas reales, con un socio registrado en la CNV</div></div>
+  </div>
+  <p class="note" style="margin-top:36px">Premium: imagen comercial a costo más 30%, más USD 300. Monitoreo: USD 50 por mes por polígono. Precios propuestos, por validar con entrevistas.</p>
+  <div class="slide-foot"><span>crisol.studio</span><span>Cateo · modelo de negocio</span></div>
+</section>
+
+<!-- 05 · Proyección -->
+<section class="slide">
+  <div class="slide-head"><div>Proyección</div><div>05 / 06</div></div>
+  <p class="eyebrow">Tres años, en dólares</p>
+  <h2 class="headline">El año 1 valida. El año 3 depende de socios.</h2>
+  <div class="body">
+  <table class="tbl compact">
+    <tr><th>Línea</th><th class="num">Año 1</th><th class="num">Año 2</th><th class="num">Año 3</th></tr>
+    <tr><td>Estudios base</td><td class="num">9.000</td><td class="num">30.000</td><td class="num">75.000</td></tr>
+    <tr><td>Estudios premium (margen)</td><td class="num">3.000</td><td class="num">15.000</td><td class="num">40.000</td></tr>
+    <tr><td>Monitoreo</td><td class="num">0</td><td class="num">12.000</td><td class="num">48.000</td></tr>
+    <tr><td>Comisión de colectas</td><td class="num">0</td><td class="num">7.500</td><td class="num">30.000</td></tr>
+    <tr><td>Contratos provinciales</td><td class="num">0</td><td class="num">30.000</td><td class="num">80.000</td></tr>
+    <tr class="total"><td>Ingresos</td><td class="num">12.000</td><td class="num">94.500</td><td class="num a">273.000</td></tr>
+  </table>
+  </div>
+  <p class="note">Estimación propia. No incluye costos de equipo, legal ni auditoría. Ninguna colecta real antes de tener un socio registrado.</p>
+  <div class="slide-foot"><span>crisol.studio</span><span>Cateo · modelo de negocio</span></div>
+</section>
+
+<!-- 06 · Cierre -->
+<section class="slide cover">
+  <div class="slide-head"><div class="wordmark">Crisol</div><div>Cateo · 2026</div></div>
+  <div style="margin:auto 0;">
+    <div class="cta-eyebrow">Próximo paso</div>
+    <h2 class="cover-title" style="font-size:48px;margin:0;max-width:24ch;">Cinco entrevistas para confirmar quién paga y cuánto.</h2>
+    <p class="cover-sub">Buscamos contactos en Minería de Salta, REMSA y una plataforma registrada en la CNV.</p>
+    <div class="cta-url">cateo-gold.vercel.app</div>
+  </div>
+  <div class="cover-foot"><span>Red de prueba · activos simulados</span><span>crisol.studio</span></div>
+</section>
+
+</body>
+</html>

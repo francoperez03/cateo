@@ -6,3 +6,4 @@ cache
 broadcast
 .next
 .env*.local
+.vercel

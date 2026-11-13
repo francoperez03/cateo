@@ -25,16 +25,16 @@ Nació para el track de Avalanche del hackathon Argentina Space 2026 (Salta, 11 
 | Contrato `contracts/src/Cateo.sol` | hecho: 5 tests en verde (`forge test`) |
 | Satélite `web/satelite/` | hecho: estudio real sobre Salar de Pozuelos en ~6 s, hash reproducible |
 | E2E local `./e2e.sh` | hecho: flujo completo y reembolso en anvil con datos reales |
-| Despliegue en Fuji | [INPUT] fondear la wallet de prueba (dirección en `.env`, `SATELITE`) con AVAX y USDC |
-| Web `web/` | por hacer: brief y dirección con `ultimate-web` |
-| Estudio de mercado `docs/` | primera versión escrita; falta la verificación cruzada y lo marcado `[INPUT]` |
+| Despliegue en Fuji | [INPUT] fondear la wallet de prueba (dirección en `.env`, `SATELITE`) con AVAX y USDC; después desplegar y cargar `NEXT_PUBLIC_CATEO`, `NEXT_PUBLIC_TOKEN` y `PRIVATE_KEY` en Vercel |
+| Web `web/` | hecho y publicado: https://cateo-gold.vercel.app (proyecto `cateo` en Vercel). Flujo completo probado en navegador contra anvil. Falta la revisión con subagente y el pulido |
+| Estudio de mercado `docs/` | escrito y auditado contra fuentes (25 cifras); queda lo marcado `[INPUT]` |
 | Video y deck | guion y deck escritos en `docs/pitch/`; faltan los links de Fuji |
 
 ## Correr
 
 ```bash
 cd contracts && forge test
-cd satelite && npm install && node estudio.mjs ejemplos/pozuelos.geojson   # informe + PNG en salida/
+cd web && npm install && node satelite/estudio.mjs satelite/ejemplos/pozuelos.geojson   # informe + PNG en salida/
 ./e2e.sh                                                                    # todo junto en anvil
 ```
 
@@ -49,6 +49,8 @@ node web/satelite/verificar.mjs 0
 
 ## Secciones
 
+- `PRODUCT.md` y `DESIGN.md`: para quién es la web y su sistema visual.
+- `web/`: Next.js. Pantallas en `app/`, lectura de cadena en `lib/`, y las rutas `api/atestar` (el satélite como función) y `api/estudio` (recomputar).
 - `contracts/`: Foundry. `Cateo.sol` (estudios, atestación, colectas) y `TokenPrueba.sol` (stablecoin simulada).
 - `web/satelite/`: `estudio.mjs` (el cálculo, determinista), `atestar.mjs`, `verificar.mjs`, `abi.mjs`.
 - `docs/estudio-de-mercado.md`: qué ve un satélite, datos y precios, financiamiento, competencia, TAM/SAM/SOM.

@@ -51,6 +51,7 @@ node web/satelite/verificar.mjs 0
 
 - `PRODUCT.md` y `DESIGN.md`: para quién es la web y su sistema visual.
 - `web/`: Next.js. Pantallas en `app/`, lectura de cadena en `lib/`, y las rutas `api/atestar` (el satélite como función) y `api/estudio` (recomputar).
+- `assets/`: logo (isotipo en SVG y PNG, versión horizontal, versión sobre fondo oscuro) y portada de 1200×630.
 - `contracts/`: Foundry. `Cateo.sol` (estudios, atestación, colectas) y `TokenPrueba.sol` (stablecoin simulada).
 - `web/satelite/`: `estudio.mjs` (el cálculo, determinista), `atestar.mjs`, `verificar.mjs`, `abi.mjs`.
 - `docs/estudio-de-mercado.md`: qué ve un satélite, datos y precios, financiamiento, competencia, TAM/SAM/SOM.

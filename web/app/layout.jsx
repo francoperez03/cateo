@@ -10,7 +10,7 @@ const dato = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500'], variabl
 export const metadata = {
   title: 'Cateo · estudios satelitales atestados en Avalanche',
   description:
-    'Índices espectrales de superficie con Sentinel-2 sobre un área, firmados en Avalanche y recomputables por cualquiera. Respaldan colectas de exploración en escrow.',
+    'Estudios de superficie con Sentinel-2, atestados en Avalanche y recomputables. Respaldan colectas de exploración en custodia.',
 }
 
 export default function Layout({ children }) {
@@ -23,10 +23,9 @@ export default function Layout({ children }) {
           <main id="contenido">{children}</main>
           <footer className="pie">
             <p>
-              Cateo corre en Avalanche Fuji (red de prueba) con activos simulados. Nada de lo que se ve acá es una oferta de
-              inversión ni una estimación de recursos minerales.
+              Red de prueba Avalanche Fuji, activos simulados. Sin oferta de inversión ni estimación de recursos minerales.
             </p>
-            <p>Imágenes: Contains modified Copernicus Sentinel data, vía Earth Search (Element 84). Fondo: Sentinel-2 cloudless por EOX.</p>
+            <p>Contains modified Copernicus Sentinel data, vía Earth Search. Fondo: Sentinel-2 cloudless por EOX.</p>
           </footer>
         </Providers>
       </body>

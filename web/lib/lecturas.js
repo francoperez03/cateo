@@ -37,8 +37,8 @@ export function useColecta(id) {
 }
 
 export function estadoColecta(c, ahora = Date.now() / 1000) {
-  if (c.retirada) return { clave: 'retirada', texto: 'Retirada por el creador' }
+  if (c.retirada) return { clave: 'retirada', texto: 'Retirada' }
   if (c.recaudado >= c.meta) return { clave: 'alcanzada', texto: 'Meta alcanzada' }
-  if (ahora >= Number(c.vence)) return { clave: 'vencida', texto: 'Venció sin llegar a la meta' }
+  if (ahora >= Number(c.vence)) return { clave: 'vencida', texto: 'Vencida' }
   return { clave: 'abierta', texto: 'Abierta' }
 }

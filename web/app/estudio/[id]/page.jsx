@@ -113,8 +113,8 @@ export default function Estudio({ params }) {
 
         {!e.atestado ? (
           <div className="estado-espera" role="status">
-            <h2>El satélite está procesando el área</h2>
-            <p>Busca la escena Sentinel-2 más despejada del último año, calcula los índices y firma la atestación. Suele tardar menos de un minuto.</p>
+            <h2>El satélite está procesando</h2>
+            <p>Busca la escena más despejada, calcula y firma. Menos de un minuto.</p>
             {errorSatelite ? (
               <>
                 <p className="nota-error" role="alert">{errorSatelite}</p>
@@ -129,12 +129,12 @@ export default function Estudio({ params }) {
             <div className="resultado">
               <div className="medida ox">
                 <span className="valor">{pct(e.pctOxidos)}</span>
-                <span className="que">del área con índice de <strong>óxidos férricos</strong> sobre el umbral</span>
+                <span className="que">del área sobre el umbral de <strong>óxidos férricos</strong></span>
                 <span className="como dato">B04/B02 &gt; {inf ? inf.umbrales.oxidos.toLocaleString('es-AR') : '…'}{inf ? ` · media ${inf.oxidos.media.toLocaleString('es-AR')} · p90 ${inf.oxidos.p90.toLocaleString('es-AR')}` : ''}</span>
               </div>
               <div className="medida ar">
                 <span className="valor">{pct(e.pctArcillas)}</span>
-                <span className="que">del área con índice de <strong>arcillas e hidroxilos</strong> sobre el umbral</span>
+                <span className="que">del área sobre el umbral de <strong>arcillas</strong></span>
                 <span className="como dato">B11/B12 &gt; {inf ? inf.umbrales.arcillas.toLocaleString('es-AR') : '…'}{inf ? ` · media ${inf.arcillas.media.toLocaleString('es-AR')} · p90 ${inf.arcillas.p90.toLocaleString('es-AR')}` : ''}</span>
               </div>
             </div>
@@ -143,42 +143,43 @@ export default function Estudio({ params }) {
             <div className={`verificacion ${recomputo.estado === 'listo' ? (recomputo.coincide ? 'bien' : 'mal') : ''}`} role="status" aria-live="polite">
               <h2>Verificación</h2>
               {recomputo.estado === 'corriendo' ? (
-                <p>Recomputando desde la cadena: mismo polígono, misma escena…</p>
+                <p>Recomputando desde la cadena…</p>
               ) : recomputo.estado === 'listo' ? (
                 <p>
                   <strong>{recomputo.coincide ? 'Coincide.' : 'No coincide.'}</strong>{' '}
                   {recomputo.coincide
-                    ? 'El informe recalculado recién, con el polígono y la escena que están en la cadena, da el mismo hash que el atestado.'
-                    : 'El informe recalculado da un hash distinto del atestado. No uses este estudio para decidir nada.'}
+                    ? 'Recalculado desde la cadena, da el mismo hash.'
+                    : 'El recálculo da otro hash. No uses este estudio.'}
                 </p>
               ) : recomputo.estado === 'error' ? (
                 <p className="nota-error">{recomputo.mensaje}</p>
               ) : null}
               <button className="boton fantasma" onClick={recomputar} disabled={recomputo.estado === 'corriendo'}>
-                {recomputo.estado === 'corriendo' ? 'Recomputando…' : 'Recomputar ahora'}
+                {recomputo.estado === 'corriendo' ? 'Recomputando…' : 'Recomputar'}
               </button>
             </div>
 
             <h2>Procedencia</h2>
             <dl className="procedencia">
-              <Dato t="Escena Sentinel-2" v={e.sceneId} mono />
-              <Dato t="Fecha de la escena" v={fecha(e.fechaEscena)} />
+              {inf ? <Dato t="Satélite" v={`${inf.plataforma.replace('sentinel-', 'Sentinel-').toUpperCase().replace('SENTINEL', 'Sentinel')} (ESA, Copernicus)`} /> : null}
+              <Dato t="Escena" v={e.sceneId} mono />
+              <Dato t="Fecha" v={fecha(e.fechaEscena)} />
               {inf ? <Dato t="Área" v={`${inf.areaKm2.toLocaleString('es-AR')} km²`} /> : null}
               {inf ? <Dato t="Píxeles válidos" v={`${inf.pixelesValidos.toLocaleString('es-AR')} de ${inf.pixelesEnPoligono.toLocaleString('es-AR')}`} /> : null}
               <Dato t="Algoritmo" v={e.versionAlgoritmo} mono />
-              <Dato t="Firmó la atestación" v={satelite ? corta(satelite) : '…'} href={enlaceDireccion(satelite)} mono />
+              <Dato t="Firmante" v={satelite ? corta(satelite) : '…'} href={enlaceDireccion(satelite)} mono />
               <Dato t="Hash del informe" v={corta(e.hashInforme)} titulo={e.hashInforme} mono />
-              <Dato t="Transacción del pedido" v={recomputo.txPedido ? corta(recomputo.txPedido) : `bloque ${e.bloquePedido}`} href={enlaceTx(recomputo.txPedido)} mono />
-              <Dato t="Transacción de la atestación" v={recomputo.txAtestacion ? corta(recomputo.txAtestacion) : `bloque ${e.bloqueAtestado}`} href={enlaceTx(recomputo.txAtestacion)} mono />
-              <Dato t="Pidió el estudio" v={corta(e.solicitante)} href={enlaceDireccion(e.solicitante)} mono />
+              <Dato t="Tx del pedido" v={recomputo.txPedido ? corta(recomputo.txPedido) : `bloque ${e.bloquePedido}`} href={enlaceTx(recomputo.txPedido)} mono />
+              <Dato t="Tx de la atestación" v={recomputo.txAtestacion ? corta(recomputo.txAtestacion) : `bloque ${e.bloqueAtestado}`} href={enlaceTx(recomputo.txAtestacion)} mono />
+              <Dato t="Solicitante" v={corta(e.solicitante)} href={enlaceDireccion(e.solicitante)} mono />
             </dl>
             <p className="declarado-bloque">
               <span>Declarado, sin verificar</span>
-              Expediente minero: <strong>{e.expediente || 'no declarado'}</strong>. Cateo no comprueba de quién es el permiso; eso se consulta en el catastro minero de la provincia.
+              Expediente: <strong>{e.expediente || 'no declarado'}</strong>. Cateo no comprueba la titularidad.
             </p>
             {inf ? <p className="nota">{inf.atribucion}</p> : null}
 
-            <h2>Colectas respaldadas por este estudio</h2>
+            <h2>Colectas de este estudio</h2>
             {suyas.length === 0 ? <p className="vacio">Ninguna todavía.</p> : (
               <ul className="filas compactas">
                 {suyas.map((c) => (
@@ -192,7 +193,7 @@ export default function Estudio({ params }) {
                 ))}
               </ul>
             )}
-            {esDueno ? <CrearColecta estudioId={id} /> : <p className="nota">Solo quien pidió el estudio puede abrir una colecta con él.</p>}
+            {esDueno ? <CrearColecta estudioId={id} /> : <p className="nota">Solo el solicitante puede abrir una colecta.</p>}
           </>
         )}
       </section>
@@ -236,7 +237,7 @@ function CrearColecta({ estudioId }) {
 
   return (
     <form className="formulario" onSubmit={crear}>
-      <h3>Abrir una colecta con este estudio</h3>
+      <h3>Abrir una colecta</h3>
       <div className="par">
         <label className="campo">
           <span>Meta en {MONEDA}</span>
@@ -247,9 +248,9 @@ function CrearColecta({ estudioId }) {
           <input inputMode="numeric" value={dias} onChange={(e) => setDias(e.target.value)} required />
         </label>
       </div>
-      <button className="boton" disabled={!valido || enviando}>{enviando ? 'Abriendo la colecta…' : 'Abrir la colecta'}</button>
+      <button className="boton" disabled={!valido || enviando}>{enviando ? 'Abriendo…' : 'Abrir la colecta'}</button>
       {error ? <p className="nota-error" role="alert">{error}</p> : null}
-      <p className="nota">Los aportes quedan en custodia del contrato. Si al vencer no se llegó a la meta, cada aportante recupera lo suyo.</p>
+      <p className="nota">Aportes en custodia. Si no llega a la meta, se reembolsan.</p>
     </form>
   )
 }

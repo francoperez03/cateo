@@ -6,7 +6,9 @@ export const CATEO = process.env.NEXT_PUBLIC_CATEO || undefined
 export const TOKEN = process.env.NEXT_PUBLIC_TOKEN || undefined
 export const LOCAL = process.env.NEXT_PUBLIC_RED === 'local'
 export const cadena = LOCAL ? foundry : avalancheFuji
-export const MONEDA = LOCAL ? 'tUSD' : 'USDC'
+// NEXT_PUBLIC_MONEDA=tUSD: el token de pago es TokenPrueba (acuñado libre desde la web). Sin definir: USDC de Fuji.
+export const MONEDA = process.env.NEXT_PUBLIC_MONEDA || (LOCAL ? 'tUSD' : 'USDC')
+export const ACUNABLE = MONEDA === 'tUSD'
 export const AREA_MAX_KM2 = 100
 
 const base = 'https://testnet.snowtrace.io'
